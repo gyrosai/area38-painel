@@ -231,9 +231,12 @@ function Topo({ dados, agora, erro }) {
   const velho = estaDesatualizado(dados.atualizado_em);
   return (
     <header style={S.topo}>
-      <div>
-        <div style={S.marca}>área 38</div>
-        <div style={S.subMarca}>Liga Área 38 · Programa Trimestral</div>
+      <div style={S.marcaBloco}>
+        {/* O .ai original vinha com padding branco em volta; o SVG foi
+            recortado no conteúdo, senão a logo apareceria pequena e
+            desalinhada dentro de uma moldura invisível. */}
+        <img src="/logo-area38.svg" alt="Área 38 Imobiliária" style={S.logo} />
+        <div style={S.subMarca}>Liga Área 38<br />Programa Trimestral</div>
       </div>
       <div style={S.topoCentro}>
         <div style={S.ciclo}>{dados.ciclo.replace("-", " · ")}</div>
@@ -458,10 +461,13 @@ const S = {
   },
   topo: {
     display: "flex", alignItems: "center", justifyContent: "space-between",
-    paddingBottom: 18, marginBottom: 22, borderBottom: "1px solid #CDD9E6",
+    paddingBottom: 16, marginBottom: 20, borderBottom: "1px solid #CDD9E6",
   },
-  marca: { fontSize: 30, fontWeight: 800, color: AZUL, letterSpacing: "-0.03em", lineHeight: 1 },
-  subMarca: { fontSize: 12, color: "#7B8794", marginTop: 4, fontWeight: 500 },
+  marcaBloco: { display: "flex", alignItems: "center", gap: 16 },
+  /* A logo é quadrada e vista de longe: precisa de presença. */
+  logo: { height: 84, width: "auto", display: "block", borderRadius: 16 },
+  subMarca: { fontSize: 13, color: "#7B8794", fontWeight: 600, lineHeight: 1.35,
+              maxWidth: 130 },
   topoCentro: { textAlign: "center" },
   ciclo: { fontSize: 22, fontWeight: 800, color: AZUL, letterSpacing: "-0.02em" },
   periodo: { fontSize: 12, color: "#7B8794", marginTop: 2 },
