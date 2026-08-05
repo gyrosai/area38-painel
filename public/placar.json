@@ -3,7 +3,7 @@
   "inicio": "2026-07-01",
   "fim": "2026-09-30",
   "dias_restantes": 56,
-  "atualizado_em": "2026-08-05T14:52:16",
+  "atualizado_em": "2026-08-05T15:07:40",
   "faixas": [
     {
       "nome": "Ouro",
@@ -52,21 +52,21 @@
       "nome_completo": "Bruno Calasans",
       "iniciais": "B",
       "posicao": 2,
-      "pontos": 1160,
+      "pontos": 1480,
       "faixa": "Bronze",
       "pct_comissao": 27,
       "movimento": null,
       "ganho_semana": null,
       "proxima_faixa": {
         "faixa": "Prata",
-        "faltam": 840,
+        "faltam": 520,
         "pct": 32
       },
       "detalhe": [
         {
           "criterio": "Cadastro de lead no CRM",
-          "qtd": 6,
-          "pontos": 960
+          "qtd": 8,
+          "pontos": 1280
         },
         {
           "criterio": "Captacao sem exclusividade",
@@ -173,7 +173,7 @@
   "resumo": {
     "corretores": 5,
     "em_faixa": 2,
-    "total_pontos": 4520,
+    "total_pontos": 4840,
     "tem_historico": false
   }
 }
