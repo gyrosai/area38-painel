@@ -56,6 +56,7 @@ export default function Painel() {
   if (!dados) return <Aviso texto="Carregando placar…" />;
 
   const c = dados.corretores;
+  const curto = montarNomesCurtos(c);
   const top3 = c.slice(0, 3);
   const resto = c.slice(3);
   /* Quanto do trimestre já passou. Cru do dado: início, fim e hoje. */
@@ -91,11 +92,11 @@ export default function Painel() {
         <section style={S.coluna}>
           <h2 style={S.tituloSecao}>Ranking do trimestre</h2>
           <div style={S.topo3}>
-            {top3.map((x) => <CardTopo key={x.codigo} c={x} />)}
+            {top3.map((x) => <CardTopo key={x.codigo} c={x} nome={curto[x.codigo]} />)}
           </div>
           {resto.length > 0 && (
             <div style={S.listaResto}>
-              {resto.map((x) => <LinhaResto key={x.codigo} c={x} />)}
+              {resto.map((x) => <LinhaResto key={x.codigo} c={x} nome={curto[x.codigo]} />)}
             </div>
           )}
         </section>
@@ -110,7 +111,7 @@ export default function Painel() {
               <div style={S.destaqueLinha}>
                 <Avatar iniciais={maisPontuou.iniciais} />
                 <div style={{ flex: 1 }}>
-                  <div style={S.destaqueNome}>{maisPontuou.nome}</div>
+                  <div style={S.destaqueNome}>{curto[maisPontuou.codigo]}</div>
                 </div>
                 <div style={{ textAlign: "right" }}>
                   <div style={S.destaqueValor}>+{formatarPontos(maisPontuou.ganho_semana)}</div>
@@ -129,7 +130,7 @@ export default function Painel() {
                 <div style={S.destaqueLinha}>
                   <Avatar iniciais={maisPerto.iniciais} />
                   <div style={{ flex: 1 }}>
-                    <div style={S.destaqueNome}>{maisPerto.nome}</div>
+                    <div style={S.destaqueNome}>{curto[maisPerto.codigo]}</div>
                   </div>
                   <div style={{ textAlign: "right" }}>
                     <div style={S.destaqueValor}>{formatarPontos(maisPerto.proxima_faixa.faltam)}</div>
@@ -153,7 +154,7 @@ export default function Painel() {
                 <div key={i} style={S.conquista}>
                   <Avatar iniciais={iniciaisDe(q.nome)} pequeno />
                   <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={S.conquistaNome}>{q.nome}</div>
+                    <div style={S.conquistaNome}>{curto[q.codigo] || q.nome}</div>
                     <div style={{ ...S.conquistaFaixa, color: corDaFaixa(q.faixa).texto }}>
                       faixa {q.faixa} conquistada
                     </div>
@@ -166,19 +167,6 @@ export default function Painel() {
             </div>
           )}
 
-          <div style={{ ...S.bloco, background: AZUL_ESC, border: "none", flex: 1.3 }}>
-            <Rotulo texto="Faixas do trimestre" claro />
-            {dados.faixas.map((f) => (
-              <div key={f.nome} style={S.faixaLinha}>
-                <span style={S.faixaNome}>{f.nome}</span>
-                <span style={S.faixaPts}>{formatarPontos(f.pts_minimo)} pts</span>
-                <span style={S.faixaPct}>{f.pct}%</span>
-              </div>
-            ))}
-            <div style={S.faixaNota}>
-              Comissão aplicada no trimestre seguinte
-            </div>
-          </div>
         </section>
 
         {/* ------------------------------------------------ coluna 3: números */}
@@ -198,6 +186,18 @@ export default function Painel() {
                      rotulo="Corretores em faixa" />
             <Metrica valor={formatarPontos(dados.resumo.total_pontos)}
                      rotulo="Pontos somados no trimestre" />
+          </div>
+
+          <div style={{ ...S.bloco, background: AZUL_ESC, border: "none" }}>
+            <Rotulo texto="Faixas do trimestre" claro />
+            {dados.faixas.map((f) => (
+              <div key={f.nome} style={S.faixaLinha}>
+                <span style={S.faixaNome}>{f.nome}</span>
+                <span style={S.faixaPts}>{formatarPontos(f.pts_minimo)} pts</span>
+                <span style={S.faixaPct}>{f.pct}%</span>
+              </div>
+            ))}
+            <div style={S.faixaNota}>Comissão aplicada no trimestre seguinte</div>
           </div>
 
           <div style={S.bloco}>
@@ -272,7 +272,7 @@ function resumoDetalhe(detalhe) {
     .join(" · ");
 }
 
-function CardTopo({ c }) {
+function CardTopo({ c, nome }) {
   const p = PODIO[c.posicao - 1] || PODIO[2];
   const faixa = corDaFaixa(c.faixa);
   return (
@@ -280,7 +280,7 @@ function CardTopo({ c }) {
       <Avatar iniciais={c.iniciais} grande />
       <div style={{ flex: 1, minWidth: 0, paddingRight: 8 }}>
         <div style={S.cardTopoLinha}>
-          <span style={S.cardNome}>{c.nome}</span>
+          <span style={S.cardNome}>{nome || c.nome}</span>
           {c.faixa ? (
             <span style={{ ...S.selo, background: faixa.fundo, color: faixa.texto,
                            borderColor: faixa.borda }}>
@@ -313,12 +313,12 @@ function CardTopo({ c }) {
   );
 }
 
-function LinhaResto({ c }) {
+function LinhaResto({ c, nome }) {
   const cor = corDaFaixa(c.faixa);
   return (
     <div style={S.linha}>
       <Avatar iniciais={c.iniciais} pequeno />
-      <span style={S.linhaNome}>{c.nome}</span>
+      <span style={S.linhaNome}>{nome || c.nome}</span>
       {c.faixa && (
         <span style={{ ...S.selo, background: cor.fundo, color: cor.texto, borderColor: cor.borda }}>
           {c.faixa}
@@ -342,6 +342,26 @@ function Movimento({ valor }) {
       {sobe ? "↑" : "↓"}{Math.abs(valor)}
     </span>
   );
+}
+
+/* Primeiro nome. Se dois corretores compartilham o primeiro nome, acrescenta
+   a inicial do sobrenome — na TV, "Bruno" e "Bruno C." e melhor que dois
+   nomes completos ocupando a linha inteira. */
+function montarNomesCurtos(lista) {
+  const contagem = {};
+  lista.forEach((c) => {
+    const p = String(c.nome || "").trim().split(/\s+/)[0];
+    contagem[p] = (contagem[p] || 0) + 1;
+  });
+  const mapa = {};
+  lista.forEach((c) => {
+    const partes = String(c.nome || "").trim().split(/\s+/);
+    const p = partes[0];
+    mapa[c.codigo] = contagem[p] > 1 && partes[1]
+      ? `${p} ${partes[1][0]}.`
+      : p;
+  });
+  return mapa;
 }
 
 const iniciaisDe = (nome) =>
