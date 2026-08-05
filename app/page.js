@@ -7,6 +7,19 @@ import {
 
 /* Cor oficial da Área 38. Não usar #0D417D — é a antiga. */
 const AZUL = "#264D83";
+
+/* Pódio: cor da POSIÇÃO, não da faixa. São coisas diferentes e o protótipo
+   as misturava — nele o 1º lugar era dourado e também faixa Ouro. Na
+   realidade o 1º colocado pode estar em Bronze, e é a faixa que define a
+   comissão. Por isso a faixa aparece como selo explícito dentro do card. */
+const PODIO = [
+  { fundo: "linear-gradient(100deg,#FFFBF0 0%,#FBEECB 100%)", borda: "#C9962E",
+    texto: "#8A6516", medalha: "#C9962E" },
+  { fundo: "linear-gradient(100deg,#FAFBFC 0%,#E7ECF1 100%)", borda: "#94A3B8",
+    texto: "#556475", medalha: "#94A3B8" },
+  { fundo: "linear-gradient(100deg,#FDF6EF 0%,#F5E3D0 100%)", borda: "#B87333",
+    texto: "#8A5222", medalha: "#B87333" },
+];
 const AZUL_ESC = "#1B3A66";
 
 /* A TV recarrega sozinha; ninguém vai até a parede apertar F5. */
@@ -46,6 +59,13 @@ export default function Painel() {
   const top3 = c.slice(0, 3);
   const resto = c.slice(3);
   const semHistorico = !dados.resumo.tem_historico;
+
+  /* Quanto do trimestre já passou. Cru do dado: início, fim e hoje. */
+  const ini = new Date(dados.inicio + "T00:00:00");
+  const fim = new Date(dados.fim + "T00:00:00");
+  const total = Math.max(1, (fim - ini) / 86400000);
+  const pctTrimestre = Math.min(100, Math.max(0,
+    Math.round(((total - dados.dias_restantes) / total) * 100)));
 
   const maisPontuou = [...c]
     .filter((x) => x.ganho_semana != null && x.ganho_semana > 0)
@@ -149,14 +169,20 @@ export default function Painel() {
         {/* ------------------------------------------------ coluna 3: números */}
         <aside style={S.coluna}>
           <div style={S.painelLateral}>
-            <div style={S.contagem}>{dados.dias_restantes}</div>
-            <div style={S.contagemCap}>
-              {dados.dias_restantes === 1 ? "dia restante" : "dias restantes"}
+            <div style={S.anelCentro}>
+              <Anel pct={pctTrimestre} valor={`${pctTrimestre}%`} legenda="do trimestre" />
+            </div>
+            <div style={S.contagemLinha}>
+              <span style={S.contagem}>{dados.dias_restantes}</span>
+              <span style={S.contagemCap}>
+                {dados.dias_restantes === 1 ? "dia restante" : "dias restantes"}
+              </span>
             </div>
             <div style={S.divisor} />
-            <Metrica valor={dados.resumo.corretores} rotulo="Corretores no programa" />
-            <Metrica valor={dados.resumo.em_faixa} rotulo="Já em faixa" />
-            <Metrica valor={formatarPontos(dados.resumo.total_pontos)} rotulo="Pontos somados" />
+            <Metrica valor={`${dados.resumo.em_faixa}/${dados.resumo.corretores}`}
+                     rotulo="Corretores em faixa" />
+            <Metrica valor={formatarPontos(dados.resumo.total_pontos)}
+                     rotulo="Pontos somados no trimestre" />
           </div>
 
           <div style={S.bloco}>
@@ -232,26 +258,42 @@ function resumoDetalhe(detalhe) {
 }
 
 function CardTopo({ c }) {
-  const cor = corDaFaixa(c.faixa);
+  const p = PODIO[c.posicao - 1] || PODIO[2];
+  const faixa = corDaFaixa(c.faixa);
   return (
-    <div style={{ ...S.card, background: cor.fundo, borderBottom: `3px solid ${cor.borda}` }}>
+    <div style={{ ...S.card, background: p.fundo, borderBottom: `3px solid ${p.borda}` }}>
       <Avatar iniciais={c.iniciais} grande />
-      <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={S.cardNome}>{c.nome}</div>
-        <div style={S.cardDetalhe}>{resumoDetalhe(c.detalhe)}</div>
-        <div style={{ ...S.cardFaixa, color: cor.texto }}>
-          {c.faixa
-            ? `${c.faixa} · ${c.pct_comissao}% de comissão`
-            : c.proxima_faixa
-              ? `faltam ${formatarPontos(c.proxima_faixa.faltam)} pts para ${c.proxima_faixa.faixa}`
-              : "—"}
+      <div style={{ flex: 1, minWidth: 0, paddingRight: 8 }}>
+        <div style={S.cardTopoLinha}>
+          <span style={S.cardNome}>{c.nome}</span>
+          {c.faixa ? (
+            <span style={{ ...S.selo, background: faixa.fundo, color: faixa.texto,
+                           borderColor: faixa.borda }}>
+              {c.faixa} · {c.pct_comissao}%
+            </span>
+          ) : (
+            <span style={{ ...S.selo, background: "#F1F5F9", color: "#64748B",
+                           borderColor: "#CBD5E1" }}>
+              abaixo do mínimo
+            </span>
+          )}
         </div>
+        <div style={S.cardDetalhe}>{resumoDetalhe(c.detalhe)}</div>
+        <div style={{ ...S.cardFaixa, color: p.texto }}>
+          {c.proxima_faixa
+            ? `faltam ${formatarPontos(c.proxima_faixa.faltam)} pts para ${c.proxima_faixa.faixa} · ${c.proxima_faixa.pct}%`
+            : "faixa máxima do trimestre"}
+        </div>
+        {c.proxima_faixa && (
+          <Barra valor={c.pontos} total={c.pontos + c.proxima_faixa.faltam}
+                 cor={p.borda} fina />
+        )}
       </div>
       <div style={{ textAlign: "right" }}>
         <div style={S.cardPontos}>{formatarPontos(c.pontos)}</div>
         <div style={S.cardPts}>pts</div>
       </div>
-      <div style={S.posicao}>{c.posicao}º</div>
+      <div style={{ ...S.posicao, color: p.medalha }}>{c.posicao}º</div>
     </div>
   );
 }
@@ -300,11 +342,42 @@ function Avatar({ iniciais, grande, pequeno }) {
   );
 }
 
-function Barra({ valor, total }) {
+function Barra({ valor, total, cor, fina }) {
   const pct = Math.min(100, Math.round((valor / total) * 100));
   return (
-    <div style={S.barraFora}>
-      <div style={{ ...S.barraDentro, width: `${pct}%` }} />
+    <div style={{ ...S.barraFora, height: fina ? 5 : 7, marginTop: fina ? 8 : 13 }}>
+      <div style={{
+        ...S.barraDentro, width: `${pct}%`,
+        background: cor ? `linear-gradient(90deg,${cor},${cor}bb)` : S.barraDentro.background,
+      }} />
+    </div>
+  );
+}
+
+/* Anel de progresso. O protótipo pedia percentuais em anel; aqui ele mostra
+   o quanto do trimestre já passou — dado que existe, ao contrário das metas
+   de escritório, que o CRM não tem. */
+function Anel({ pct, valor, legenda, cor = "#7BD3A0", tamanho = 132 }) {
+  const r = (tamanho - 16) / 2;
+  const circ = 2 * Math.PI * r;
+  const preenchido = (Math.min(100, Math.max(0, pct)) / 100) * circ;
+  return (
+    <div style={{ position: "relative", width: tamanho, height: tamanho }}>
+      <svg width={tamanho} height={tamanho} style={{ transform: "rotate(-90deg)" }}>
+        <circle cx={tamanho / 2} cy={tamanho / 2} r={r} fill="none"
+                stroke="rgba(255,255,255,.18)" strokeWidth="9" />
+        <circle cx={tamanho / 2} cy={tamanho / 2} r={r} fill="none"
+                stroke={cor} strokeWidth="9" strokeLinecap="round"
+                strokeDasharray={`${preenchido} ${circ}`} />
+      </svg>
+      <div style={{
+        position: "absolute", inset: 0, display: "flex", flexDirection: "column",
+        alignItems: "center", justifyContent: "center", color: "#fff",
+      }}>
+        <span style={{ fontSize: "1.5em", fontWeight: 800, lineHeight: 1,
+                       letterSpacing: "-0.03em" }}>{valor}</span>
+        <span style={{ fontSize: "0.62em", opacity: .78, marginTop: 3 }}>{legenda}</span>
+      </div>
     </div>
   );
 }
@@ -367,15 +440,18 @@ const S = {
     borderRadius: 14, position: "relative", flex: 1, minHeight: 0,
     boxShadow: "0 1px 3px rgba(30,41,59,.06)",
   },
-  cardNome: { fontSize: "1.55em", fontWeight: 800, letterSpacing: "-0.025em",
+  cardTopoLinha: { display: "flex", alignItems: "center", gap: 10, minWidth: 0,
+                   flexWrap: "nowrap" },
+  cardNome: { fontSize: "1.5em", fontWeight: 800, letterSpacing: "-0.025em",
               lineHeight: 1.15, whiteSpace: "nowrap", overflow: "hidden",
               textOverflow: "ellipsis" },
   cardDetalhe: { fontSize: "0.76em", color: "#64748B", marginTop: 3, overflow: "hidden",
                  textOverflow: "ellipsis", whiteSpace: "nowrap" },
-  cardFaixa: { fontSize: "0.82em", fontWeight: 700, marginTop: 5 },
+  cardFaixa: { fontSize: "0.78em", fontWeight: 700, marginTop: 5 },
   cardPontos: { fontSize: "1.9em", fontWeight: 800, letterSpacing: "-0.03em", lineHeight: 1 },
   cardPts: { fontSize: 11, color: "#7B8794", marginTop: 2 },
-  posicao: { fontSize: "1.6em", fontWeight: 800, color: "#94A3B8", minWidth: 42, textAlign: "right" },
+  posicao: { fontSize: "1.75em", fontWeight: 800, minWidth: 44, textAlign: "right",
+             letterSpacing: "-0.03em" },
 
   listaResto: { background: "#fff", borderRadius: 14, padding: "6px 16px", marginTop: 12,
                 boxShadow: "0 1px 3px rgba(30,41,59,.06)", flexShrink: 0,
@@ -386,8 +462,9 @@ const S = {
   linhaPontos: { fontSize: "0.95em", fontWeight: 800, minWidth: 58, textAlign: "right" },
   linhaPos: { fontSize: 13, color: "#94A3B8", minWidth: 30, textAlign: "right", fontWeight: 700 },
   mov: { fontSize: 12, fontWeight: 700, minWidth: 26, textAlign: "right" },
-  selo: { fontSize: 10, fontWeight: 700, padding: "2px 9px", borderRadius: 20,
-          border: "1px solid", textTransform: "uppercase", letterSpacing: "0.04em" },
+  selo: { fontSize: "0.6em", fontWeight: 700, padding: "3px 10px", borderRadius: 20,
+          border: "1px solid", textTransform: "uppercase", letterSpacing: "0.04em",
+          whiteSpace: "nowrap", flexShrink: 0 },
 
   bloco: { background: "#fff", borderRadius: 14, padding: "16px 18px", marginBottom: 12,
            border: "1px solid #E3EAF2", boxShadow: "0 1px 3px rgba(30,41,59,.05)",
@@ -401,7 +478,8 @@ const S = {
   destaqueCap: { fontSize: 11, color: "#7B8794", marginTop: 3 },
   placeholder: { fontSize: 13, color: "#94A3B8", fontStyle: "italic", padding: "6px 0" },
 
-  barraFora: { height: 7, background: "#EDF2F7", borderRadius: 20, marginTop: 13, overflow: "hidden" },
+  barraFora: { height: 7, background: "rgba(30,41,59,.09)", borderRadius: 20,
+               marginTop: 13, overflow: "hidden", width: "100%" },
   barraDentro: { height: "100%", background: `linear-gradient(90deg,${AZUL},#4A7BB8)`, borderRadius: 20 },
 
   faixaLinha: { display: "flex", alignItems: "center", gap: 10, padding: "7px 0",
@@ -411,12 +489,15 @@ const S = {
   faixaPct: { fontSize: "1.05em", fontWeight: 800, color: "#fff", minWidth: 46, textAlign: "right" },
   faixaNota: { fontSize: 11, color: "rgba(255,255,255,.55)", marginTop: 10 },
 
-  painelLateral: { background: AZUL, borderRadius: 14, padding: "22px 20px", color: "#fff",
+  painelLateral: { background: AZUL, borderRadius: 14, padding: "20px", color: "#fff",
                    marginBottom: 12, display: "flex", flexDirection: "column",
                    justifyContent: "center", flex: "0 0 auto" },
-  contagem: { fontSize: "3.6em", fontWeight: 800, lineHeight: 1, letterSpacing: "-0.04em" },
-  contagemCap: { fontSize: 13, color: "rgba(255,255,255,.75)", marginTop: 4 },
-  divisor: { height: 1, background: "rgba(255,255,255,.18)", margin: "18px 0 14px" },
+  anelCentro: { display: "flex", justifyContent: "center", marginBottom: 14 },
+  contagemLinha: { display: "flex", alignItems: "baseline", gap: 9,
+                   justifyContent: "center" },
+  contagem: { fontSize: "2em", fontWeight: 800, lineHeight: 1, letterSpacing: "-0.03em" },
+  contagemCap: { fontSize: 13, color: "rgba(255,255,255,.75)" },
+  divisor: { height: 1, background: "rgba(255,255,255,.18)", margin: "16px 0 13px" },
   metrica: { display: "flex", alignItems: "baseline", gap: 9, marginBottom: 9 },
   metricaValor: { fontSize: "1.3em", fontWeight: 800, minWidth: 46 },
   metricaRotulo: { fontSize: 12, color: "rgba(255,255,255,.72)" },
