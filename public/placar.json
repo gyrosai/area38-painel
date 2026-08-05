@@ -1,0 +1,179 @@
+{
+  "ciclo": "2026-Q3",
+  "inicio": "2026-07-01",
+  "fim": "2026-09-30",
+  "dias_restantes": 56,
+  "atualizado_em": "2026-08-05T14:52:16",
+  "faixas": [
+    {
+      "nome": "Ouro",
+      "pts_minimo": 3000,
+      "pct": 38
+    },
+    {
+      "nome": "Prata",
+      "pts_minimo": 2000,
+      "pct": 32
+    },
+    {
+      "nome": "Bronze",
+      "pts_minimo": 1000,
+      "pct": 27
+    }
+  ],
+  "corretores": [
+    {
+      "codigo": "39",
+      "nome": "Gustavo Mendes Oliveira",
+      "nome_completo": "Gustavo Mendes de Oliveira",
+      "iniciais": "GM",
+      "posicao": 1,
+      "pontos": 1760,
+      "faixa": "Bronze",
+      "pct_comissao": 27,
+      "movimento": null,
+      "ganho_semana": null,
+      "proxima_faixa": {
+        "faixa": "Prata",
+        "faltam": 240,
+        "pct": 32
+      },
+      "detalhe": [
+        {
+          "criterio": "Cadastro de lead no CRM",
+          "qtd": 11,
+          "pontos": 1760
+        }
+      ]
+    },
+    {
+      "codigo": "36",
+      "nome": "Bruno",
+      "nome_completo": "Bruno Calasans",
+      "iniciais": "B",
+      "posicao": 2,
+      "pontos": 1160,
+      "faixa": "Bronze",
+      "pct_comissao": 27,
+      "movimento": null,
+      "ganho_semana": null,
+      "proxima_faixa": {
+        "faixa": "Prata",
+        "faltam": 840,
+        "pct": 32
+      },
+      "detalhe": [
+        {
+          "criterio": "Cadastro de lead no CRM",
+          "qtd": 6,
+          "pontos": 960
+        },
+        {
+          "criterio": "Captacao sem exclusividade",
+          "qtd": 5,
+          "pontos": 200
+        }
+      ]
+    },
+    {
+      "codigo": "4",
+      "nome": "Thalles",
+      "nome_completo": "Felicissimo Thalles de Melho Sousa",
+      "iniciais": "T",
+      "posicao": 3,
+      "pontos": 800,
+      "faixa": null,
+      "pct_comissao": null,
+      "movimento": null,
+      "ganho_semana": null,
+      "proxima_faixa": {
+        "faixa": "Bronze",
+        "faltam": 200,
+        "pct": 27
+      },
+      "detalhe": [
+        {
+          "criterio": "Captacao sem exclusividade",
+          "qtd": 4,
+          "pontos": 160
+        },
+        {
+          "criterio": "Cadastro de lead no CRM",
+          "qtd": 4,
+          "pontos": 640
+        }
+      ]
+    },
+    {
+      "codigo": "2",
+      "nome": "Maycon",
+      "nome_completo": "Maycon Alves Barbosa",
+      "iniciais": "M",
+      "posicao": 4,
+      "pontos": 720,
+      "faixa": null,
+      "pct_comissao": null,
+      "movimento": null,
+      "ganho_semana": null,
+      "proxima_faixa": {
+        "faixa": "Bronze",
+        "faltam": 280,
+        "pct": 27
+      },
+      "detalhe": [
+        {
+          "criterio": "Cadastro de lead no CRM",
+          "qtd": 4,
+          "pontos": 640
+        },
+        {
+          "criterio": "Captacao sem exclusividade",
+          "qtd": 2,
+          "pontos": 80
+        }
+      ]
+    },
+    {
+      "codigo": "38",
+      "nome": "Julio",
+      "nome_completo": "Julio Marcos Ramos Mendes",
+      "iniciais": "J",
+      "posicao": 5,
+      "pontos": 80,
+      "faixa": null,
+      "pct_comissao": null,
+      "movimento": null,
+      "ganho_semana": null,
+      "proxima_faixa": {
+        "faixa": "Bronze",
+        "faltam": 920,
+        "pct": 27
+      },
+      "detalhe": [
+        {
+          "criterio": "Captacao sem exclusividade",
+          "qtd": 2,
+          "pontos": 80
+        }
+      ]
+    }
+  ],
+  "conquistas": [
+    {
+      "codigo": "36",
+      "faixa": "Bronze",
+      "desde": "2026-08-05"
+    },
+    {
+      "codigo": "39",
+      "faixa": "Bronze",
+      "desde": "2026-08-05"
+    }
+  ],
+  "resumo": {
+    "corretores": 5,
+    "em_faixa": 2,
+    "total_pontos": 4520,
+    "tem_historico": false
+  }
+}
