@@ -152,19 +152,25 @@ export default function Painel() {
             ) : <Placeholder texto="Todos na faixa máxima" />}
           </div>
 
-          <div style={{ ...S.bloco, background: AZUL_ESC, border: "none", flex: 1.3 }}>
-            <Rotulo texto="Faixas do trimestre" claro />
-            {dados.faixas.map((f) => (
-              <div key={f.nome} style={S.faixaLinha}>
-                <span style={S.faixaNome}>{f.nome}</span>
-                <span style={S.faixaPts}>{formatarPontos(f.pts_minimo)} pts</span>
-                <span style={S.faixaPct}>{f.pct}%</span>
-              </div>
-            ))}
-            <div style={S.faixaNota}>
-              Comissão aplicada no trimestre seguinte
+          {dados.conquistas?.length > 0 && (
+            <div style={S.bloco}>
+              <Rotulo texto="Conquistas do trimestre" />
+              {dados.conquistas.slice(0, 3).map((q, i) => (
+                <div key={i} style={S.conquista}>
+                  <Avatar iniciais={iniciaisDe(q.nome)} pequeno />
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={S.conquistaNome}>{curto[q.codigo] || q.nome}</div>
+                    <div style={{ ...S.conquistaFaixa, color: corDaFaixa(q.faixa).texto }}>
+                      faixa {q.faixa} conquistada
+                    </div>
+                  </div>
+                  <span style={S.conquistaQuando}>
+                    {q.dias === 0 ? "hoje" : q.dias === 1 ? "ontem" : `há ${q.dias} dias`}
+                  </span>
+                </div>
+              ))}
             </div>
-          </div>
+          )}
         </section>
 
         {/* ------------------------------------------------ coluna 3: números */}
@@ -186,38 +192,19 @@ export default function Painel() {
                      rotulo="Pontos somados no trimestre" />
           </div>
 
-          {dados.conquistas?.length > 0 && (
-            <div style={S.bloco}>
-              <Rotulo texto="Conquistas" />
-              {dados.conquistas.slice(0, 2).map((q, i) => (
-                <div key={i} style={S.conquista}>
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={S.conquistaNome}>{curto[q.codigo] || q.nome}</div>
-                    <div style={{ ...S.conquistaFaixa, color: corDaFaixa(q.faixa).texto }}>
-                      faixa {q.faixa}
-                    </div>
-                  </div>
-                  <span style={S.conquistaQuando}>
-                    {q.dias === 0 ? "hoje" : q.dias === 1 ? "ontem" : `há ${q.dias}d`}
-                  </span>
-                </div>
-              ))}
-            </div>
-          )}
 
-          <div style={S.bloco}>
-            <Rotulo texto="Como pontuar" />
-            {[
-              ["Cadastrar lead no CRM", 160],
-              ["Captação exclusiva", 120],
-              ["Feedback ao proprietário", 80],
-              ["Captação sem exclusividade", 40],
-            ].map(([t, p]) => (
-              <div key={t} style={S.regraLinha}>
-                <span style={S.regraTexto}>{t}</span>
-                <span style={S.regraPts}>{p}</span>
+          <div style={{ ...S.bloco, background: AZUL_ESC, border: "none" }}>
+            <Rotulo texto="Faixas do trimestre" claro />
+            {dados.faixas.map((f) => (
+              <div key={f.nome} style={S.faixaLinha}>
+                <span style={S.faixaNome}>{f.nome}</span>
+                <span style={S.faixaPts}>{formatarPontos(f.pts_minimo)} pts</span>
+                <span style={S.faixaPct}>{f.pct}%</span>
               </div>
             ))}
+            <div style={S.faixaNota}>
+              Comissão aplicada no trimestre seguinte
+            </div>
           </div>
         </aside>
       </div>
