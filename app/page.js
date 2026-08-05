@@ -58,8 +58,6 @@ export default function Painel() {
   const c = dados.corretores;
   const top3 = c.slice(0, 3);
   const resto = c.slice(3);
-  const semHistorico = !dados.resumo.tem_historico;
-
   /* Quanto do trimestre já passou. Cru do dado: início, fim e hoje. */
   const ini = new Date(dados.inicio + "T00:00:00");
   const fim = new Date(dados.fim + "T00:00:00");
@@ -68,7 +66,7 @@ export default function Painel() {
     Math.round(((total - dados.dias_restantes) / total) * 100)));
 
   const maisPontuou = [...c]
-    .filter((x) => x.ganho_semana != null && x.ganho_semana > 0)
+    .filter((x) => x.ganho_semana > 0)
     .sort((a, b) => b.ganho_semana - a.ganho_semana)[0];
 
   const maisPerto = [...c]
@@ -120,10 +118,7 @@ export default function Painel() {
                 </div>
               </div>
             ) : (
-              <Placeholder texto={
-                semHistorico
-                  ? "Disponível depois de uma semana de apuração"
-                  : "Nenhuma pontuação nova nos últimos 7 dias"} />
+              <Placeholder texto="Nenhuma pontuação nova nos últimos 7 dias" />
             )}
           </div>
 
@@ -150,6 +145,26 @@ export default function Painel() {
               </>
             ) : <Placeholder texto="Todos na faixa máxima" />}
           </div>
+
+          {dados.conquistas?.length > 0 && (
+            <div style={S.bloco}>
+              <Rotulo texto="Conquistas do trimestre" />
+              {dados.conquistas.slice(0, 3).map((q, i) => (
+                <div key={i} style={S.conquista}>
+                  <Avatar iniciais={iniciaisDe(q.nome)} pequeno />
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={S.conquistaNome}>{q.nome}</div>
+                    <div style={{ ...S.conquistaFaixa, color: corDaFaixa(q.faixa).texto }}>
+                      faixa {q.faixa} conquistada
+                    </div>
+                  </div>
+                  <span style={S.conquistaQuando}>
+                    {q.dias === 0 ? "hoje" : q.dias === 1 ? "ontem" : `há ${q.dias} dias`}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
 
           <div style={{ ...S.bloco, background: AZUL_ESC, border: "none", flex: 1.3 }}>
             <Rotulo texto="Faixas do trimestre" claro />
@@ -329,6 +344,9 @@ function Movimento({ valor }) {
   );
 }
 
+const iniciaisDe = (nome) =>
+  String(nome || "").split(" ").slice(0, 2).map((x) => x[0]).join("").toUpperCase();
+
 function Avatar({ iniciais, grande, pequeno }) {
   const t = grande ? "3.9em" : pequeno ? "1.9em" : "2.7em";
   return (
@@ -477,6 +495,11 @@ const S = {
   destaqueValor: { fontSize: "1.45em", fontWeight: 800, color: AZUL, letterSpacing: "-0.02em", lineHeight: 1 },
   destaqueCap: { fontSize: 11, color: "#7B8794", marginTop: 3 },
   placeholder: { fontSize: 13, color: "#94A3B8", fontStyle: "italic", padding: "6px 0" },
+  conquista: { display: "flex", alignItems: "center", gap: 10, padding: "8px 0",
+               borderBottom: "1px solid #EEF2F7" },
+  conquistaNome: { fontSize: "0.95em", fontWeight: 700 },
+  conquistaFaixa: { fontSize: "0.7em", fontWeight: 600, marginTop: 1 },
+  conquistaQuando: { fontSize: "0.7em", color: "#94A3B8", whiteSpace: "nowrap" },
 
   barraFora: { height: 7, background: "rgba(30,41,59,.09)", borderRadius: 20,
                marginTop: 13, overflow: "hidden", width: "100%" },
