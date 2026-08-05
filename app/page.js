@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
   carregarPlacar, corDaFaixa, formatarPontos, horaDe, estaDesatualizado,
 } from "@/lib/dados";
@@ -29,27 +29,74 @@ export default function Painel() {
   const [dados, setDados] = useState(null);
   const [erro, setErro] = useState(null);
   const [agora, setAgora] = useState(null);
-  const [altura, setAltura] = useState(1080);
+  const [esc, setEsc] = useState(1);
+  const grade = useRef(null);
+  const passos = useRef(0);
 
   useEffect(() => {
     let vivo = true;
     const buscar = () =>
       carregarPlacar()
-        .then((d) => vivo && (setDados(d), setErro(null)))
+        .then((d) => vivo && (passos.current = 0, setDados(d), setErro(null)))
         // Mantém o último placar na tela em vez de trocar por erro:
         // internet caída não deve apagar o painel do escritório.
         .catch((e) => vivo && setErro(e.message));
     buscar();
-    const medir = () => setAltura(window.innerHeight);
-    medir();
-    window.addEventListener("resize", medir);
     const t1 = setInterval(buscar, INTERVALO_MS);
     const t2 = setInterval(() => setAgora(new Date()), 30000);
     setAgora(new Date());
     return () => {
       vivo = false; clearInterval(t1); clearInterval(t2);
-      window.removeEventListener("resize", medir);
     };
+  }, []);
+
+  /* Auto-ajuste de escala.
+     Em vez de adivinhar tamanhos, o painel se mede: renderiza, compara a
+     altura do conteudo com a altura disponivel e encolhe ate caber. Resolve
+     de uma vez a classe inteira de bugs de corte — numero de corretores,
+     blocos novos, tela menor, barra de favoritos do navegador. */
+  useLayoutEffect(() => {
+    if (!dados) return;
+    const el = grade.current;
+    if (!el) return;
+
+    // Mede a coluna mais alta, nao o container: o scrollHeight de um
+    // container nunca fica MENOR que o clientHeight, entao ele nunca
+    // acusaria espaco sobrando — so transbordo.
+    const colunas = Array.from(el.children);
+    const usado = Math.max(...colunas.map((c) => c.getBoundingClientRect().height));
+    const disponivel = el.clientHeight;
+    const sobra = usado - disponivel;
+
+    // Encolher tem prioridade e nunca e bloqueado pela trava: conteudo
+    // cortado na parede do escritorio e pior que painel um pouco menor.
+    if (sobra > -2) {  // margem: para de crescer 2px antes da borda
+      const fator = (disponivel / usado) * 0.98;
+      passos.current += 1;
+      setEsc((e) => Math.max(0.45, e * fator));
+      return;
+    }
+
+    // Trava so no crescimento: sem ela, um conteudo que muda de altura ao
+    // escalar (quebra de linha) oscilaria para sempre na TV.
+    if (passos.current > 20) return;
+
+    // Cresce com folga de 3% e amortecimento, para chegar na borda sem
+    // ultrapassar — ultrapassar significaria cortar e ter que voltar.
+    if (sobra < -disponivel * 0.035) {
+      const fator = 1 + ((disponivel * 0.97 / usado) - 1) * 0.45;
+      if (fator > 1.002) {
+        passos.current += 1;
+        setEsc((e) => Math.min(2.6, e * fator));
+      }
+    }
+  }, [dados, esc]);
+
+  // Recomeca a medicao quando a janela muda de tamanho
+  useEffect(() => {
+    const aoRedimensionar = () => { passos.current = 0; setEsc(1); };
+    window.addEventListener("resize", aoRedimensionar);
+    return () => window.removeEventListener("resize", aoRedimensionar);
   }, []);
 
   if (!dados && erro) return <Aviso texto={`Não foi possível carregar o placar: ${erro}`} />;
@@ -74,20 +121,11 @@ export default function Painel() {
     .filter((x) => x.proxima_faixa)
     .sort((a, b) => a.proxima_faixa.faltam - b.proxima_faixa.faltam)[0];
 
-  /* Dois fatores de escala. O primeiro ajusta ao tamanho da equipe: com 5
-     corretores os cards crescem, com 15 encolhem. O segundo ajusta a altura
-     real disponivel — numa TV em tela cheia sao 1080px, mas num navegador
-     com barra de favoritos sobram bem menos, e o conteudo cortava embaixo. */
-  const n = c.length;
-  const porEquipe = n <= 6 ? 1.3 : n <= 9 ? 1.1 : n <= 12 ? 0.98 : 0.86;
-  const porAltura = Math.min(1, altura / 1010);
-  const esc = Math.max(0.62, porEquipe * porAltura);
-
   return (
     <main style={{ ...S.tela, fontSize: `${esc}rem` }}>
       <Topo dados={dados} agora={agora} erro={erro} />
 
-      <div style={S.grade}>
+      <div style={S.grade} ref={grade}>
         {/* ---------------------------------------------- coluna 1: ranking */}
         <section style={S.coluna}>
           <h2 style={S.tituloSecao}>Ranking do trimestre</h2>
@@ -395,7 +433,7 @@ function Barra({ valor, total, cor, fina }) {
 /* Anel de progresso. O protótipo pedia percentuais em anel; aqui ele mostra
    o quanto do trimestre já passou — dado que existe, ao contrário das metas
    de escritório, que o CRM não tem. */
-function Anel({ pct, valor, legenda, cor = "#7BD3A0", tamanho = 132 }) {
+function Anel({ pct, valor, legenda, cor = "#7BD3A0", tamanho = 122 }) {
   const r = (tamanho - 16) / 2;
   const circ = 2 * Math.PI * r;
   const preenchido = (Math.min(100, Math.max(0, pct)) / 100) * circ;
@@ -465,17 +503,17 @@ const S = {
   status: { fontSize: 11, marginTop: 5, fontWeight: 600 },
 
   grade: {
-    display: "grid", gridTemplateColumns: "1.35fr 1fr 0.85fr", gap: 22,
-    flex: 1, minHeight: 0,
+    display: "grid", gridTemplateColumns: "1.5fr 1.05fr 0.95fr", gap: 22,
+    flex: 1, minHeight: 0, overflow: "hidden", alignItems: "start",
   },
-  coluna: { display: "flex", flexDirection: "column", minHeight: 0 },
+  coluna: { display: "flex", flexDirection: "column" },
   tituloSecao: { fontSize: 13, fontWeight: 700, color: "#5A6B7D", textTransform: "uppercase",
                  letterSpacing: "0.09em", margin: "0 0 12px" },
 
-  topo3: { display: "flex", flexDirection: "column", gap: 10, flex: 1, minHeight: 0 },
+  topo3: { display: "flex", flexDirection: "column", gap: 10 },
   card: {
-    display: "flex", alignItems: "center", gap: 14, padding: "1.05em 1.15em",
-    borderRadius: 14, position: "relative", flex: 1, minHeight: 0,
+    display: "flex", alignItems: "center", gap: 14, padding: "1.15em 1.15em",
+    borderRadius: 14, position: "relative",
     boxShadow: "0 1px 3px rgba(30,41,59,.06)",
   },
   cardTopoLinha: { display: "flex", alignItems: "center", gap: 10, minWidth: 0,
@@ -492,8 +530,7 @@ const S = {
              letterSpacing: "-0.03em" },
 
   listaResto: { background: "#fff", borderRadius: 14, padding: "6px 16px", marginTop: 12,
-                boxShadow: "0 1px 3px rgba(30,41,59,.06)", flexShrink: 0,
-                maxHeight: "42%", overflow: "hidden" },
+                boxShadow: "0 1px 3px rgba(30,41,59,.06)" },
   linha: { display: "flex", alignItems: "center", gap: 11, padding: "9px 0",
            borderBottom: "1px solid #EEF2F7" },
   linhaNome: { flex: 1, fontSize: "0.95em", fontWeight: 600 },
@@ -504,10 +541,12 @@ const S = {
           border: "1px solid", textTransform: "uppercase", letterSpacing: "0.04em",
           whiteSpace: "nowrap", flexShrink: 0 },
 
-  bloco: { background: "#fff", borderRadius: 14, padding: "16px 18px", marginBottom: 12,
-           border: "1px solid #E3EAF2", boxShadow: "0 1px 3px rgba(30,41,59,.05)",
-           flex: 1, minHeight: 0, display: "flex", flexDirection: "column",
-           justifyContent: "center" },
+  /* Altura natural, sem flex:1. O painel se ajusta encolhendo a fonte
+     (ver useLayoutEffect), nao esticando caixas — esticar criava espaco
+     morto quando sobrava e cortava conteudo quando faltava. */
+  bloco: { background: "#fff", borderRadius: 14, padding: "0.95em 1.05em",
+           marginBottom: 12, border: "1px solid #E3EAF2",
+           boxShadow: "0 1px 3px rgba(30,41,59,.05)" },
   rotulo: { fontSize: 11, fontWeight: 700, textTransform: "uppercase",
             letterSpacing: "0.09em", marginBottom: 11 },
   destaqueLinha: { display: "flex", alignItems: "center", gap: 12 },
@@ -532,9 +571,8 @@ const S = {
   faixaPct: { fontSize: "1.05em", fontWeight: 800, color: "#fff", minWidth: 46, textAlign: "right" },
   faixaNota: { fontSize: 11, color: "rgba(255,255,255,.55)", marginTop: 10 },
 
-  painelLateral: { background: AZUL, borderRadius: 14, padding: "20px", color: "#fff",
-                   marginBottom: 12, display: "flex", flexDirection: "column",
-                   justifyContent: "center", flex: "0 0 auto" },
+  painelLateral: { background: AZUL, borderRadius: 14, padding: "1.15em", color: "#fff",
+                   marginBottom: 12 },
   anelCentro: { display: "flex", justifyContent: "center", marginBottom: 14 },
   contagemLinha: { display: "flex", alignItems: "baseline", gap: 9,
                    justifyContent: "center" },
