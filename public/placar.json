@@ -2,8 +2,8 @@
   "ciclo": "2026-Q3",
   "inicio": "2026-07-01",
   "fim": "2026-09-30",
-  "dias_restantes": 56,
-  "atualizado_em": "2026-08-05T15:41:19",
+  "dias_restantes": 55,
+  "atualizado_em": "2026-08-06T01:35:10",
   "faixas": [
     {
       "nome": "Ouro",
@@ -164,14 +164,14 @@
       "nome": "Bruno",
       "faixa": "Bronze",
       "desde": "2026-08-04",
-      "dias": 1
+      "dias": 2
     },
     {
       "codigo": "39",
       "nome": "Gustavo Mendes Oliveira",
       "faixa": "Bronze",
       "desde": "2026-08-03",
-      "dias": 2
+      "dias": 3
     }
   ],
   "resumo": {
