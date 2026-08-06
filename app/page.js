@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import {
-  carregarPlacar, corDaFaixa, formatarPontos, horaDe, estaDesatualizado,
+  carregarPlacar, corDaFaixa, formatarPontos, horaDe, estadoDoDado,
 } from "@/lib/dados";
 
 /* Cor oficial da Área 38. Não usar #0D417D — é a antiga. */
@@ -215,7 +215,8 @@ export default function Painel() {
 /* ------------------------------------------------------------------ peças */
 
 function Topo({ dados, agora, erro }) {
-  const velho = estaDesatualizado(dados.atualizado_em);
+  const estado = estadoDoDado(dados.atualizado_em);
+  const alerta = erro || estado.cor === "alerta";
   return (
     <header style={S.topo}>
       <div style={S.marcaBloco}>
@@ -233,11 +234,13 @@ function Topo({ dados, agora, erro }) {
         <div style={S.relogio}>
           {agora ? agora.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" }) : "--:--"}
         </div>
-        {/* Sem selo "ao vivo" fixo: se a atualização parar, a TV precisa
-            dizer isso em vez de mentir para o escritório inteiro. */}
-        <div style={{ ...S.status, color: velho || erro ? "#F59E0B" : "#86EFAC" }}>
-          {erro ? "sem conexão · dados de " : velho ? "desatualizado · " : "atualizado "}
-          {horaDe(dados.atualizado_em)}
+        {/* Sem selo "ao vivo" fixo. A apuração é diária: dado de ontem já
+            está atrasado e precisa aparecer como tal, senão a TV afirma que
+            está em dia enquanto mostra número velho. */}
+        <div style={{ ...S.status, color: alerta ? "#D97706" : "#15803D" }}>
+          {alerta && <span style={S.pontoAlerta} />}
+          {erro ? "sem conexão · " : ""}
+          {estado.texto} · {horaDe(dados.atualizado_em)}
         </div>
       </div>
     </header>
@@ -459,7 +462,10 @@ const S = {
   ciclo: { fontSize: 22, fontWeight: 800, color: AZUL, letterSpacing: "-0.02em" },
   periodo: { fontSize: 12, color: "#7B8794", marginTop: 2 },
   relogio: { fontSize: 30, fontWeight: 800, color: AZUL, letterSpacing: "-0.02em", lineHeight: 1 },
-  status: { fontSize: 11, marginTop: 5, fontWeight: 600 },
+  status: { fontSize: 11, marginTop: 5, fontWeight: 700, display: "flex",
+            alignItems: "center", justifyContent: "flex-end", gap: 6 },
+  pontoAlerta: { width: 7, height: 7, borderRadius: "50%", background: "#D97706",
+                 display: "inline-block", flexShrink: 0 },
 
   grade: {
     display: "grid", gridTemplateColumns: "1.35fr 1fr 0.85fr", gap: 22,
