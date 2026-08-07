@@ -155,7 +155,7 @@ export default function Painel() {
           {dados.conquistas?.length > 0 && (
             <div style={S.bloco}>
               <Rotulo texto="Conquistas do trimestre" />
-              {dados.conquistas.slice(0, 3).map((q, i) => (
+              {dados.conquistas.slice(0, 2).map((q, i) => (
                 <div key={i} style={S.conquista}>
                   <Avatar iniciais={iniciaisDe(q.nome)} pequeno />
                   <div style={{ flex: 1, minWidth: 0 }}>
@@ -507,10 +507,14 @@ const S = {
           border: "1px solid", textTransform: "uppercase", letterSpacing: "0.04em",
           whiteSpace: "nowrap", flexShrink: 0 },
 
+  /* overflow:hidden e essencial aqui: sem ele, um bloco com conteudo maior
+     que o espaco disponivel vaza por cima do card seguinte em vez de ser
+     recortado — foi o que aconteceu quando as conquistas passaram a ter tres
+     linhas e o titulo apareceu sobreposto ao card de cima. */
   bloco: { background: "#fff", borderRadius: 14, padding: "16px 18px", marginBottom: 12,
            border: "1px solid #E3EAF2", boxShadow: "0 1px 3px rgba(30,41,59,.05)",
-           flex: 1, minHeight: 0, display: "flex", flexDirection: "column",
-           justifyContent: "center" },
+           flex: 1, minHeight: 0, overflow: "hidden", display: "flex",
+           flexDirection: "column", justifyContent: "center" },
   rotulo: { fontSize: 11, fontWeight: 700, textTransform: "uppercase",
             letterSpacing: "0.09em", marginBottom: 11 },
   destaqueLinha: { display: "flex", alignItems: "center", gap: 12 },
