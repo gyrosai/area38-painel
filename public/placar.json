@@ -3,7 +3,7 @@
   "inicio": "2026-07-01",
   "fim": "2026-09-30",
   "dias_restantes": 55,
-  "atualizado_em": "2026-08-06T14:12:25",
+  "atualizado_em": "2026-08-06T22:59:41",
   "faixas": [
     {
       "nome": "Ouro",
@@ -139,21 +139,21 @@
       "nome_completo": "Julio Marcos Ramos Mendes",
       "iniciais": "J",
       "posicao": 5,
-      "pontos": 80,
+      "pontos": 120,
       "faixa": null,
       "pct_comissao": null,
       "movimento": -1,
-      "ganho_semana": 0,
+      "ganho_semana": 40,
       "proxima_faixa": {
         "faixa": "Bronze",
-        "faltam": 920,
+        "faltam": 880,
         "pct": 27
       },
       "detalhe": [
         {
           "criterio": "Captacao sem exclusividade",
-          "qtd": 2,
-          "pontos": 80
+          "qtd": 3,
+          "pontos": 120
         }
       ]
     }
@@ -177,7 +177,7 @@
   "resumo": {
     "corretores": 5,
     "em_faixa": 2,
-    "total_pontos": 4840,
+    "total_pontos": 4880,
     "tem_historico": true
   }
 }
