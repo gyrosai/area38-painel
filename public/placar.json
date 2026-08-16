@@ -2,8 +2,8 @@
   "ciclo": "2026-Q3",
   "inicio": "2026-07-01",
   "fim": "2026-09-30",
-  "dias_restantes": 48,
-  "atualizado_em": "2026-08-13T22:06:05",
+  "dias_restantes": 46,
+  "atualizado_em": "2026-08-15T23:26:26",
   "faixas": [
     {
       "nome": "Ouro",
@@ -31,8 +31,8 @@
       "pontos": 2240,
       "faixa": "Prata",
       "pct_comissao": 32,
-      "movimento": 1,
-      "ganho_semana": 1440,
+      "movimento": 0,
+      "ganho_semana": 0,
       "proxima_faixa": {
         "faixa": "Ouro",
         "faltam": 760,
@@ -57,14 +57,14 @@
       "nome_completo": "Bruno Calasans",
       "iniciais": "B",
       "posicao": 2,
-      "pontos": 1680,
+      "pontos": 1840,
       "faixa": "Bronze",
       "pct_comissao": 27,
-      "movimento": -1,
-      "ganho_semana": 200,
+      "movimento": 0,
+      "ganho_semana": 360,
       "proxima_faixa": {
         "faixa": "Prata",
-        "faltam": 320,
+        "faltam": 160,
         "pct": 32
       },
       "detalhe": [
@@ -75,8 +75,13 @@
         },
         {
           "criterio": "Captacao sem exclusividade",
-          "qtd": 6,
-          "pontos": 240
+          "qtd": 7,
+          "pontos": 280
+        },
+        {
+          "criterio": "Captacao com exclusividade",
+          "qtd": 1,
+          "pontos": 120
         }
       ]
     },
@@ -140,27 +145,27 @@
       "nome": "Thalles",
       "faixa": "Bronze",
       "desde": "2026-08-07",
-      "dias": 6
+      "dias": 8
     },
     {
       "codigo": "4",
       "nome": "Thalles",
       "faixa": "Prata",
       "desde": "2026-08-07",
-      "dias": 6
+      "dias": 8
     },
     {
       "codigo": "36",
       "nome": "Bruno",
       "faixa": "Bronze",
       "desde": "2026-08-04",
-      "dias": 9
+      "dias": 11
     }
   ],
   "resumo": {
     "corretores": 4,
     "em_faixa": 2,
-    "total_pontos": 4760,
+    "total_pontos": 4920,
     "tem_historico": true
   }
 }
