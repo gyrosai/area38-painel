@@ -3,7 +3,7 @@
   "inicio": "2026-07-01",
   "fim": "2026-09-30",
   "dias_restantes": 39,
-  "atualizado_em": "2026-08-22T01:04:11",
+  "atualizado_em": "2026-08-22T23:03:31",
   "faixas": [
     {
       "nome": "Ouro",
@@ -28,14 +28,14 @@
       "nome_completo": "Felicissimo Thalles de Melho Sousa",
       "iniciais": "T",
       "posicao": 1,
-      "pontos": 2240,
+      "pontos": 2560,
       "faixa": "Prata",
       "pct_comissao": 32,
       "movimento": 0,
-      "ganho_semana": 0,
+      "ganho_semana": 320,
       "proxima_faixa": {
         "faixa": "Ouro",
-        "faltam": 760,
+        "faltam": 440,
         "pct": 38
       },
       "detalhe": [
@@ -46,8 +46,8 @@
         },
         {
           "criterio": "Cadastro de lead no CRM",
-          "qtd": 13,
-          "pontos": 2080
+          "qtd": 15,
+          "pontos": 2400
         }
       ]
     },
@@ -165,7 +165,7 @@
   "resumo": {
     "corretores": 4,
     "em_faixa": 2,
-    "total_pontos": 4960,
+    "total_pontos": 5280,
     "tem_historico": true
   }
 }
