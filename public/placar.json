@@ -3,7 +3,7 @@
   "inicio": "2026-07-01",
   "fim": "2026-09-30",
   "dias_restantes": 28,
-  "atualizado_em": "2026-09-02T00:24:42",
+  "atualizado_em": "2026-09-02T23:51:47",
   "faixas": [
     {
       "nome": "Ouro",
@@ -91,14 +91,14 @@
       "nome_completo": "Maycon Alves Barbosa",
       "iniciais": "M",
       "posicao": 3,
-      "pontos": 720,
+      "pontos": 760,
       "faixa": null,
       "pct_comissao": null,
       "movimento": 0,
       "ganho_semana": 0,
       "proxima_faixa": {
         "faixa": "Bronze",
-        "faltam": 280,
+        "faltam": 240,
         "pct": 27
       },
       "detalhe": [
@@ -109,8 +109,8 @@
         },
         {
           "criterio": "Captacao sem exclusividade",
-          "qtd": 2,
-          "pontos": 80
+          "qtd": 3,
+          "pontos": 120
         }
       ]
     },
@@ -165,7 +165,7 @@
   "resumo": {
     "corretores": 4,
     "em_faixa": 2,
-    "total_pontos": 5320,
+    "total_pontos": 5360,
     "tem_historico": true
   }
 }
