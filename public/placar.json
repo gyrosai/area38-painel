@@ -2,8 +2,8 @@
   "ciclo": "2026-Q3",
   "inicio": "2026-07-01",
   "fim": "2026-09-30",
-  "dias_restantes": 28,
-  "atualizado_em": "2026-09-02T23:51:47",
+  "dias_restantes": 26,
+  "atualizado_em": "2026-09-04T00:04:34",
   "faixas": [
     {
       "nome": "Ouro",
@@ -145,21 +145,21 @@
       "nome": "Thalles",
       "faixa": "Bronze",
       "desde": "2026-08-07",
-      "dias": 26
+      "dias": 28
     },
     {
       "codigo": "4",
       "nome": "Thalles",
       "faixa": "Prata",
       "desde": "2026-08-07",
-      "dias": 26
+      "dias": 28
     },
     {
       "codigo": "36",
       "nome": "Bruno",
       "faixa": "Bronze",
       "desde": "2026-08-04",
-      "dias": 29
+      "dias": 31
     }
   ],
   "resumo": {
