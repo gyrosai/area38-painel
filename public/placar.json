@@ -2,8 +2,8 @@
   "ciclo": "2026-Q3",
   "inicio": "2026-07-01",
   "fim": "2026-09-30",
-  "dias_restantes": 26,
-  "atualizado_em": "2026-09-04T00:04:34",
+  "dias_restantes": 25,
+  "atualizado_em": "2026-09-05T00:13:06",
   "faixas": [
     {
       "nome": "Ouro",
@@ -137,6 +137,24 @@
           "pontos": 120
         }
       ]
+    },
+    {
+      "codigo": "43",
+      "nome": "Raiane",
+      "nome_completo": "Guimarães",
+      "iniciais": "R",
+      "posicao": 5,
+      "pontos": 0,
+      "faixa": null,
+      "pct_comissao": null,
+      "movimento": 0,
+      "ganho_semana": 0,
+      "proxima_faixa": {
+        "faixa": "Bronze",
+        "faltam": 1000,
+        "pct": 27
+      },
+      "detalhe": []
     }
   ],
   "conquistas": [
@@ -145,25 +163,25 @@
       "nome": "Thalles",
       "faixa": "Bronze",
       "desde": "2026-08-07",
-      "dias": 28
+      "dias": 29
     },
     {
       "codigo": "4",
       "nome": "Thalles",
       "faixa": "Prata",
       "desde": "2026-08-07",
-      "dias": 28
+      "dias": 29
     },
     {
       "codigo": "36",
       "nome": "Bruno",
       "faixa": "Bronze",
       "desde": "2026-08-04",
-      "dias": 31
+      "dias": 32
     }
   ],
   "resumo": {
-    "corretores": 4,
+    "corretores": 5,
     "em_faixa": 2,
     "total_pontos": 5360,
     "tem_historico": true
