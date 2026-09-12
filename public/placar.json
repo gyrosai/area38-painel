@@ -2,8 +2,8 @@
   "ciclo": "2026-Q3",
   "inicio": "2026-07-01",
   "fim": "2026-09-30",
-  "dias_restantes": 19,
-  "atualizado_em": "2026-09-11T00:50:54",
+  "dias_restantes": 18,
+  "atualizado_em": "2026-09-12T00:12:36",
   "faixas": [
     {
       "nome": "Ouro",
@@ -53,14 +53,14 @@
       "nome_completo": "Bruno Calasans",
       "iniciais": "B",
       "posicao": 2,
-      "pontos": 2600,
+      "pontos": 2640,
       "faixa": "Prata",
       "pct_comissao": 32,
       "movimento": 0,
-      "ganho_semana": 40,
+      "ganho_semana": 80,
       "proxima_faixa": {
         "faixa": "Ouro",
-        "faltam": 400,
+        "faltam": 360,
         "pct": 38
       },
       "detalhe": [
@@ -71,8 +71,8 @@
         },
         {
           "criterio": "Captacao sem exclusividade",
-          "qtd": 10,
-          "pontos": 400
+          "qtd": 11,
+          "pontos": 440
         },
         {
           "criterio": "Captacao com exclusividade",
@@ -116,21 +116,21 @@
       "nome_completo": "Julio Marcos Ramos Mendes",
       "iniciais": "J",
       "posicao": 4,
-      "pontos": 120,
+      "pontos": 160,
       "faixa": null,
       "pct_comissao": null,
       "movimento": 0,
-      "ganho_semana": 0,
+      "ganho_semana": 40,
       "proxima_faixa": {
         "faixa": "Bronze",
-        "faltam": 880,
+        "faltam": 840,
         "pct": 27
       },
       "detalhe": [
         {
           "criterio": "Captacao sem exclusividade",
-          "qtd": 3,
-          "pontos": 120
+          "qtd": 4,
+          "pontos": 160
         }
       ]
     },
@@ -159,41 +159,41 @@
       "nome": "Thalles",
       "faixa": "Ouro",
       "desde": "2026-08-31",
-      "dias": 11
+      "dias": 12
     },
     {
       "codigo": "36",
       "nome": "Bruno",
       "faixa": "Prata",
       "desde": "2026-08-27",
-      "dias": 15
+      "dias": 16
     },
     {
       "codigo": "4",
       "nome": "Thalles",
       "faixa": "Bronze",
       "desde": "2026-08-07",
-      "dias": 35
+      "dias": 36
     },
     {
       "codigo": "4",
       "nome": "Thalles",
       "faixa": "Prata",
       "desde": "2026-08-07",
-      "dias": 35
+      "dias": 36
     },
     {
       "codigo": "36",
       "nome": "Bruno",
       "faixa": "Bronze",
       "desde": "2026-08-04",
-      "dias": 38
+      "dias": 39
     }
   ],
   "resumo": {
     "corretores": 5,
     "em_faixa": 2,
-    "total_pontos": 6840,
+    "total_pontos": 6920,
     "tem_historico": true
   }
 }
