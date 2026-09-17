@@ -2,8 +2,8 @@
   "ciclo": "2026-Q3",
   "inicio": "2026-07-01",
   "fim": "2026-09-30",
-  "dias_restantes": 14,
-  "atualizado_em": "2026-09-16T00:12:47",
+  "dias_restantes": 13,
+  "atualizado_em": "2026-09-17T01:43:46",
   "faixas": [
     {
       "nome": "Ouro",
@@ -53,14 +53,14 @@
       "nome_completo": "Bruno Calasans",
       "iniciais": "B",
       "posicao": 2,
-      "pontos": 2720,
+      "pontos": 2760,
       "faixa": "Prata",
       "pct_comissao": 32,
       "movimento": 0,
-      "ganho_semana": 120,
+      "ganho_semana": 160,
       "proxima_faixa": {
         "faixa": "Ouro",
-        "faltam": 280,
+        "faltam": 240,
         "pct": 38
       },
       "detalhe": [
@@ -71,8 +71,8 @@
         },
         {
           "criterio": "Captacao sem exclusividade",
-          "qtd": 13,
-          "pontos": 520
+          "qtd": 14,
+          "pontos": 560
         },
         {
           "criterio": "Captacao com exclusividade",
@@ -120,7 +120,7 @@
       "faixa": null,
       "pct_comissao": null,
       "movimento": 0,
-      "ganho_semana": 40,
+      "ganho_semana": 0,
       "proxima_faixa": {
         "faixa": "Bronze",
         "faltam": 840,
@@ -177,41 +177,41 @@
       "nome": "Thalles",
       "faixa": "Ouro",
       "desde": "2026-08-31",
-      "dias": 16
+      "dias": 17
     },
     {
       "codigo": "36",
       "nome": "Bruno",
       "faixa": "Prata",
       "desde": "2026-08-27",
-      "dias": 20
+      "dias": 21
     },
     {
       "codigo": "4",
       "nome": "Thalles",
       "faixa": "Bronze",
       "desde": "2026-08-07",
-      "dias": 40
+      "dias": 41
     },
     {
       "codigo": "4",
       "nome": "Thalles",
       "faixa": "Prata",
       "desde": "2026-08-07",
-      "dias": 40
+      "dias": 41
     },
     {
       "codigo": "36",
       "nome": "Bruno",
       "faixa": "Bronze",
       "desde": "2026-08-04",
-      "dias": 43
+      "dias": 44
     }
   ],
   "resumo": {
     "corretores": 6,
     "em_faixa": 2,
-    "total_pontos": 7000,
+    "total_pontos": 7040,
     "tem_historico": true
   }
 }
