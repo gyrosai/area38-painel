@@ -22,6 +22,18 @@ const PODIO = [
 ];
 const AZUL_ESC = "#1B3A66";
 
+/* Espaçamento entre itens por MARGEM, não por `gap`.
+
+   O navegador da TV do escritório não suporta `gap` em flexbox (chegou ao
+   Chrome só em 2020, e navegadores de TV e de dongle ficam anos defasados).
+   Sem ele os selos colavam nos nomes, as iniciais colavam no texto e os
+   cards encostavam uns nos outros, com os círculos invadindo o vizinho.
+   A margem entre irmãos (`* + *`) funciona em qualquer navegador e fica
+   visualmente idêntica ao `gap` nos modernos. */
+const ESPACAMENTO = [6, 9, 10, 11, 12, 14, 16]
+  .map((n) => `.gx-${n}>*+*{margin-left:${n}px}`)
+  .join("") + ".gy-10>*+*{margin-top:10px}";
+
 /* A TV recarrega sozinha; ninguém vai até a parede apertar F5. */
 const INTERVALO_MS = 5 * 60 * 1000;
 
@@ -81,19 +93,20 @@ export default function Painel() {
      real disponivel — numa TV em tela cheia sao 1080px, mas num navegador
      com barra de favoritos sobram bem menos, e o conteudo cortava embaixo. */
   const n = c.length;
-  const porEquipe = n <= 6 ? 1.3 : n <= 9 ? 1.1 : n <= 12 ? 0.98 : 0.86;
+  const porEquipe = n <= 5 ? 1.3 : n <= 7 ? 1.12 : n <= 9 ? 1.02 : n <= 12 ? 0.94 : 0.86;
   const porAltura = Math.min(1, altura / 1010);
-  const esc = Math.max(0.62, porEquipe * porAltura);
+  const esc = Math.max(0.52, porEquipe * porAltura);
 
   return (
     <main style={{ ...S.tela, fontSize: `${esc}rem` }}>
+      <style>{ESPACAMENTO}</style>
       <Topo dados={dados} agora={agora} erro={erro} />
 
       <div style={S.grade}>
         {/* ---------------------------------------------- coluna 1: ranking */}
         <section style={S.coluna}>
           <h2 style={S.tituloSecao}>Ranking do trimestre</h2>
-          <div style={S.topo3}>
+          <div className="gy-10" style={S.topo3}>
             {top3.map((x) => <CardTopo key={x.codigo} c={x} nome={curto[x.codigo]} />)}
           </div>
           {resto.length > 0 && (
@@ -110,7 +123,7 @@ export default function Painel() {
           <div style={S.bloco}>
             <Rotulo texto="Quem mais pontuou na semana" />
             {maisPontuou ? (
-              <div style={S.destaqueLinha}>
+              <div className="gx-12" style={S.destaqueLinha}>
                 <Avatar iniciais={maisPontuou.iniciais} />
                 <div style={{ flex: 1 }}>
                   <div style={S.destaqueNome}>{curto[maisPontuou.codigo]}</div>
@@ -132,7 +145,7 @@ export default function Painel() {
             <Rotulo texto="Mais perto de subir de faixa" />
             {maisPerto ? (
               <>
-                <div style={S.destaqueLinha}>
+                <div className="gx-12" style={S.destaqueLinha}>
                   <Avatar iniciais={maisPerto.iniciais} />
                   <div style={{ flex: 1 }}>
                     <div style={S.destaqueNome}>{curto[maisPerto.codigo]}</div>
@@ -156,7 +169,7 @@ export default function Painel() {
             <div style={S.bloco}>
               <Rotulo texto="Conquistas do trimestre" />
               {dados.conquistas.slice(0, 2).map((q, i) => (
-                <div key={i} style={S.conquista}>
+                <div key={i} className="gx-10" style={S.conquista}>
                   <Avatar iniciais={iniciaisDe(q.nome)} pequeno />
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={S.conquistaNome}>{curto[q.codigo] || q.nome}</div>
@@ -179,7 +192,7 @@ export default function Painel() {
             <div style={S.anelCentro}>
               <Anel pct={pctTrimestre} valor={`${pctTrimestre}%`} legenda="do trimestre" />
             </div>
-            <div style={S.contagemLinha}>
+            <div className="gx-9" style={S.contagemLinha}>
               <span style={S.contagem}>{dados.dias_restantes}</span>
               <span style={S.contagemCap}>
                 {dados.dias_restantes === 1 ? "dia restante" : "dias restantes"}
@@ -196,7 +209,7 @@ export default function Painel() {
           <div style={{ ...S.bloco, background: AZUL_ESC, border: "none" }}>
             <Rotulo texto="Faixas do trimestre" claro />
             {dados.faixas.map((f) => (
-              <div key={f.nome} style={S.faixaLinha}>
+              <div key={f.nome} className="gx-10" style={S.faixaLinha}>
                 <span style={S.faixaNome}>{f.nome}</span>
                 <span style={S.faixaPts}>{formatarPontos(f.pts_minimo)} pts</span>
                 <span style={S.faixaPct}>{f.pct}%</span>
@@ -219,7 +232,7 @@ function Topo({ dados, agora, erro }) {
   const alerta = erro || estado.cor === "alerta";
   return (
     <header style={S.topo}>
-      <div style={S.marcaBloco}>
+      <div className="gx-16" style={S.marcaBloco}>
         {/* O .ai original vinha com padding branco em volta; o SVG foi
             recortado no conteúdo, senão a logo apareceria pequena e
             desalinhada dentro de uma moldura invisível. */}
@@ -274,10 +287,10 @@ function CardTopo({ c, nome }) {
   const p = PODIO[c.posicao - 1] || PODIO[2];
   const faixa = corDaFaixa(c.faixa);
   return (
-    <div style={{ ...S.card, background: p.fundo, borderBottom: `3px solid ${p.borda}` }}>
+    <div className="gx-14" style={{ ...S.card, background: p.fundo, borderBottom: `3px solid ${p.borda}` }}>
       <Avatar iniciais={c.iniciais} grande />
       <div style={{ flex: 1, minWidth: 0, paddingRight: 8 }}>
-        <div style={S.cardTopoLinha}>
+        <div className="gx-10" style={S.cardTopoLinha}>
           <span style={S.cardNome}>{nome || c.nome}</span>
           {c.faixa ? (
             <span style={{ ...S.selo, background: faixa.fundo, color: faixa.texto,
@@ -314,7 +327,7 @@ function CardTopo({ c, nome }) {
 function LinhaResto({ c, nome }) {
   const cor = corDaFaixa(c.faixa);
   return (
-    <div style={S.linha}>
+    <div className="gx-11" style={S.linha}>
       <Avatar iniciais={c.iniciais} pequeno />
       <span style={S.linhaNome}>{nome || c.nome}</span>
       {c.faixa && (
@@ -406,7 +419,7 @@ function Anel({ pct, valor, legenda, cor = "#7BD3A0", tamanho = 132 }) {
                 strokeDasharray={`${preenchido} ${circ}`} />
       </svg>
       <div style={{
-        position: "absolute", inset: 0, display: "flex", flexDirection: "column",
+        position: "absolute", top: 0, right: 0, bottom: 0, left: 0, display: "flex", flexDirection: "column",
         alignItems: "center", justifyContent: "center", color: "#fff",
       }}>
         <span style={{ fontSize: "1.5em", fontWeight: 800, lineHeight: 1,
@@ -424,7 +437,7 @@ const Rotulo = ({ texto, claro }) => (
 const Placeholder = ({ texto }) => <div style={S.placeholder}>{texto}</div>;
 
 const Metrica = ({ valor, rotulo }) => (
-  <div style={S.metrica}>
+  <div className="gx-9" style={S.metrica}>
     <span style={S.metricaValor}>{valor}</span>
     <span style={S.metricaRotulo}>{rotulo}</span>
   </div>
@@ -453,7 +466,7 @@ const S = {
     display: "flex", alignItems: "center", justifyContent: "space-between",
     paddingBottom: 16, marginBottom: 20, borderBottom: "1px solid #CDD9E6",
   },
-  marcaBloco: { display: "flex", alignItems: "center", gap: 16 },
+  marcaBloco: { display: "flex", alignItems: "center" },
   /* A logo é quadrada e vista de longe: precisa de presença. */
   logo: { height: 84, width: "auto", display: "block", borderRadius: 16 },
   subMarca: { fontSize: 13, color: "#7B8794", fontWeight: 600, lineHeight: 1.35,
@@ -463,25 +476,24 @@ const S = {
   periodo: { fontSize: 12, color: "#7B8794", marginTop: 2 },
   relogio: { fontSize: 30, fontWeight: 800, color: AZUL, letterSpacing: "-0.02em", lineHeight: 1 },
   status: { fontSize: 11, marginTop: 5, fontWeight: 700, display: "flex",
-            alignItems: "center", justifyContent: "flex-end", gap: 6 },
+            alignItems: "center", justifyContent: "flex-end", },
   pontoAlerta: { width: 7, height: 7, borderRadius: "50%", background: "#D97706",
-                 display: "inline-block", flexShrink: 0 },
+                 display: "inline-block", flexShrink: 0, marginRight: 6 },
 
   grade: {
-    display: "grid", gridTemplateColumns: "1.35fr 1fr 0.85fr", gap: 22,
+    display: "grid", gridTemplateColumns: "1.35fr 1fr 0.85fr", gap: 22, gridGap: 22,
     flex: 1, minHeight: 0,
   },
   coluna: { display: "flex", flexDirection: "column", minHeight: 0 },
   tituloSecao: { fontSize: 13, fontWeight: 700, color: "#5A6B7D", textTransform: "uppercase",
                  letterSpacing: "0.09em", margin: "0 0 12px" },
 
-  topo3: { display: "flex", flexDirection: "column", gap: 10, flex: 1, minHeight: 0 },
+  topo3: { display: "flex", flexDirection: "column", flex: 1 },
   card: {
-    display: "flex", alignItems: "center", gap: 14, padding: "1.05em 1.15em",
-    borderRadius: 14, position: "relative", flex: 1, minHeight: 0,
-    boxShadow: "0 1px 3px rgba(30,41,59,.06)",
+    display: "flex", alignItems: "center", padding: "1.05em 1.15em",
+    borderRadius: 14, position: "relative", flex: 1, boxShadow: "0 1px 3px rgba(30,41,59,.06)",
   },
-  cardTopoLinha: { display: "flex", alignItems: "center", gap: 10, minWidth: 0,
+  cardTopoLinha: { display: "flex", alignItems: "center", minWidth: 0,
                    flexWrap: "nowrap" },
   cardNome: { fontSize: "1.5em", fontWeight: 800, letterSpacing: "-0.025em",
               lineHeight: 1.15, whiteSpace: "nowrap", overflow: "hidden",
@@ -497,7 +509,7 @@ const S = {
   listaResto: { background: "#fff", borderRadius: 14, padding: "6px 16px", marginTop: 12,
                 boxShadow: "0 1px 3px rgba(30,41,59,.06)", flexShrink: 0,
                 maxHeight: "42%", overflow: "hidden" },
-  linha: { display: "flex", alignItems: "center", gap: 11, padding: "9px 0",
+  linha: { display: "flex", alignItems: "center", padding: "9px 0",
            borderBottom: "1px solid #EEF2F7" },
   linhaNome: { flex: 1, fontSize: "0.95em", fontWeight: 600 },
   linhaPontos: { fontSize: "0.95em", fontWeight: 800, minWidth: 58, textAlign: "right" },
@@ -517,12 +529,12 @@ const S = {
            flexDirection: "column", justifyContent: "center" },
   rotulo: { fontSize: 11, fontWeight: 700, textTransform: "uppercase",
             letterSpacing: "0.09em", marginBottom: 11 },
-  destaqueLinha: { display: "flex", alignItems: "center", gap: 12 },
+  destaqueLinha: { display: "flex", alignItems: "center" },
   destaqueNome: { fontSize: "1.3em", fontWeight: 800, letterSpacing: "-0.02em" },
   destaqueValor: { fontSize: "1.45em", fontWeight: 800, color: AZUL, letterSpacing: "-0.02em", lineHeight: 1 },
   destaqueCap: { fontSize: 11, color: "#7B8794", marginTop: 3 },
   placeholder: { fontSize: 13, color: "#94A3B8", fontStyle: "italic", padding: "6px 0" },
-  conquista: { display: "flex", alignItems: "center", gap: 10, padding: "6px 0",
+  conquista: { display: "flex", alignItems: "center", padding: "6px 0",
                borderBottom: "1px solid #EEF2F7" },
   conquistaNome: { fontSize: "0.9em", fontWeight: 700 },
   conquistaFaixa: { fontSize: "0.68em", fontWeight: 600, marginTop: 1 },
@@ -532,7 +544,7 @@ const S = {
                marginTop: 13, overflow: "hidden", width: "100%" },
   barraDentro: { height: "100%", background: `linear-gradient(90deg,${AZUL},#4A7BB8)`, borderRadius: 20 },
 
-  faixaLinha: { display: "flex", alignItems: "center", gap: 10, padding: "7px 0",
+  faixaLinha: { display: "flex", alignItems: "center", padding: "7px 0",
                 borderBottom: "1px solid rgba(255,255,255,.1)" },
   faixaNome: { flex: 1, fontSize: "0.95em", fontWeight: 700, color: "#fff" },
   faixaPts: { fontSize: 13, color: "rgba(255,255,255,.65)" },
@@ -543,17 +555,16 @@ const S = {
                    marginBottom: 12, display: "flex", flexDirection: "column",
                    justifyContent: "center", flex: "0 0 auto" },
   anelCentro: { display: "flex", justifyContent: "center", marginBottom: 14 },
-  contagemLinha: { display: "flex", alignItems: "baseline", gap: 9,
+  contagemLinha: { display: "flex", alignItems: "baseline",
                    justifyContent: "center" },
   contagem: { fontSize: "2em", fontWeight: 800, lineHeight: 1, letterSpacing: "-0.03em" },
   contagemCap: { fontSize: 13, color: "rgba(255,255,255,.75)" },
   divisor: { height: 1, background: "rgba(255,255,255,.18)", margin: "16px 0 13px" },
-  metrica: { display: "flex", alignItems: "baseline", gap: 9, marginBottom: 9 },
+  metrica: { display: "flex", alignItems: "baseline", marginBottom: 9 },
   metricaValor: { fontSize: "1.3em", fontWeight: 800, minWidth: 46 },
   metricaRotulo: { fontSize: 12, color: "rgba(255,255,255,.72)" },
 
-  regraLinha: { display: "flex", alignItems: "center", justifyContent: "space-between",
-                gap: 12, padding: "7px 0", borderBottom: "1px solid #EEF2F7" },
+  regraLinha: { display: "flex", alignItems: "center", justifyContent: "space-between", padding: "7px 0", borderBottom: "1px solid #EEF2F7" },
   regraTexto: { fontSize: "0.82em", color: "#475569", lineHeight: 1.3 },
   regraPts: { fontSize: "0.88em", fontWeight: 800, color: AZUL, flexShrink: 0 },
 };
