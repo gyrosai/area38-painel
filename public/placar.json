@@ -3,7 +3,7 @@
   "inicio": "2026-07-01",
   "fim": "2026-09-30",
   "dias_restantes": 9,
-  "atualizado_em": "2026-09-21T00:26:17",
+  "atualizado_em": "2026-09-21T10:34:21",
   "faixas": [
     {
       "nome": "Ouro",
@@ -53,21 +53,21 @@
       "nome_completo": "Bruno Calasans",
       "iniciais": "B",
       "posicao": 2,
-      "pontos": 2760,
+      "pontos": 2920,
       "faixa": "Prata",
       "pct_comissao": 32,
       "movimento": 0,
       "ganho_semana": 40,
       "proxima_faixa": {
         "faixa": "Ouro",
-        "faltam": 240,
+        "faltam": 80,
         "pct": 38
       },
       "detalhe": [
         {
           "criterio": "Cadastro de lead no CRM",
-          "qtd": 13,
-          "pontos": 2080
+          "qtd": 14,
+          "pontos": 2240
         },
         {
           "criterio": "Captacao sem exclusividade",
@@ -87,21 +87,21 @@
       "nome_completo": "Maycon Alves Barbosa",
       "iniciais": "M",
       "posicao": 3,
-      "pontos": 920,
-      "faixa": null,
-      "pct_comissao": null,
+      "pontos": 1080,
+      "faixa": "Bronze",
+      "pct_comissao": 27,
       "movimento": 0,
       "ganho_semana": 0,
       "proxima_faixa": {
-        "faixa": "Bronze",
-        "faltam": 80,
-        "pct": 27
+        "faixa": "Prata",
+        "faltam": 920,
+        "pct": 32
       },
       "detalhe": [
         {
           "criterio": "Cadastro de lead no CRM",
-          "qtd": 5,
-          "pontos": 800
+          "qtd": 6,
+          "pontos": 960
         },
         {
           "criterio": "Captacao sem exclusividade",
@@ -116,20 +116,25 @@
       "nome_completo": "Julio Marcos Ramos Mendes",
       "iniciais": "J",
       "posicao": 4,
-      "pontos": 160,
+      "pontos": 320,
       "faixa": null,
       "pct_comissao": null,
       "movimento": 0,
       "ganho_semana": 0,
       "proxima_faixa": {
         "faixa": "Bronze",
-        "faltam": 840,
+        "faltam": 680,
         "pct": 27
       },
       "detalhe": [
         {
           "criterio": "Captacao sem exclusividade",
           "qtd": 4,
+          "pontos": 160
+        },
+        {
+          "criterio": "Cadastro de lead no CRM",
+          "qtd": 1,
           "pontos": 160
         }
       ]
@@ -173,6 +178,13 @@
   ],
   "conquistas": [
     {
+      "codigo": "2",
+      "nome": "Maycon",
+      "faixa": "Bronze",
+      "desde": "2026-09-14",
+      "dias": 7
+    },
+    {
       "codigo": "4",
       "nome": "Thalles",
       "faixa": "Ouro",
@@ -210,8 +222,8 @@
   ],
   "resumo": {
     "corretores": 6,
-    "em_faixa": 2,
-    "total_pontos": 7040,
+    "em_faixa": 3,
+    "total_pontos": 7520,
     "tem_historico": true
   }
 }
