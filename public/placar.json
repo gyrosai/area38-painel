@@ -2,8 +2,8 @@
   "ciclo": "2026-Q3",
   "inicio": "2026-07-01",
   "fim": "2026-09-30",
-  "dias_restantes": 9,
-  "atualizado_em": "2026-09-21T23:49:22",
+  "dias_restantes": 8,
+  "atualizado_em": "2026-09-22T10:44:08",
   "faixas": [
     {
       "nome": "Ouro",
@@ -138,42 +138,6 @@
           "pontos": 160
         }
       ]
-    },
-    {
-      "codigo": "43",
-      "nome": "Raiane",
-      "nome_completo": "Guimarães",
-      "iniciais": "R",
-      "posicao": 5,
-      "pontos": 0,
-      "faixa": null,
-      "pct_comissao": null,
-      "movimento": 0,
-      "ganho_semana": 0,
-      "proxima_faixa": {
-        "faixa": "Bronze",
-        "faltam": 1000,
-        "pct": 27
-      },
-      "detalhe": []
-    },
-    {
-      "codigo": "44",
-      "nome": "Dulce",
-      "nome_completo": "Moura",
-      "iniciais": "D",
-      "posicao": 6,
-      "pontos": 0,
-      "faixa": null,
-      "pct_comissao": null,
-      "movimento": 0,
-      "ganho_semana": 0,
-      "proxima_faixa": {
-        "faixa": "Bronze",
-        "faltam": 1000,
-        "pct": 27
-      },
-      "detalhe": []
     }
   ],
   "conquistas": [
@@ -182,46 +146,46 @@
       "nome": "Thalles",
       "faixa": "Ouro",
       "desde": "2026-08-31",
-      "dias": 21
+      "dias": 22
     },
     {
       "codigo": "2",
       "nome": "Maycon",
       "faixa": "Bronze",
       "desde": "2026-08-28",
-      "dias": 24
+      "dias": 25
     },
     {
       "codigo": "36",
       "nome": "Bruno",
       "faixa": "Prata",
       "desde": "2026-08-27",
-      "dias": 25
+      "dias": 26
     },
     {
       "codigo": "4",
       "nome": "Thalles",
       "faixa": "Bronze",
       "desde": "2026-08-07",
-      "dias": 45
+      "dias": 46
     },
     {
       "codigo": "4",
       "nome": "Thalles",
       "faixa": "Prata",
       "desde": "2026-08-07",
-      "dias": 45
+      "dias": 46
     },
     {
       "codigo": "36",
       "nome": "Bruno",
       "faixa": "Bronze",
       "desde": "2026-08-04",
-      "dias": 48
+      "dias": 49
     }
   ],
   "resumo": {
-    "corretores": 6,
+    "corretores": 4,
     "em_faixa": 3,
     "total_pontos": 7680,
     "tem_historico": true
