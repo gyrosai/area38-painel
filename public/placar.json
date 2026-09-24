@@ -3,7 +3,7 @@
   "inicio": "2026-07-01",
   "fim": "2026-09-30",
   "dias_restantes": 7,
-  "atualizado_em": "2026-09-23T00:09:00",
+  "atualizado_em": "2026-09-23T23:00:27",
   "faixas": [
     {
       "nome": "Ouro",
@@ -48,45 +48,11 @@
       ]
     },
     {
-      "codigo": "36",
-      "nome": "Bruno",
-      "nome_completo": "Bruno Calasans",
-      "iniciais": "B",
-      "posicao": 2,
-      "pontos": 2920,
-      "faixa": "Prata",
-      "pct_comissao": 32,
-      "movimento": 0,
-      "ganho_semana": 0,
-      "proxima_faixa": {
-        "faixa": "Ouro",
-        "faltam": 80,
-        "pct": 38
-      },
-      "detalhe": [
-        {
-          "criterio": "Cadastro de lead no CRM",
-          "qtd": 14,
-          "pontos": 2240
-        },
-        {
-          "criterio": "Captacao sem exclusividade",
-          "qtd": 14,
-          "pontos": 560
-        },
-        {
-          "criterio": "Captacao com exclusividade",
-          "qtd": 1,
-          "pontos": 120
-        }
-      ]
-    },
-    {
       "codigo": "2",
       "nome": "Maycon",
       "nome_completo": "Maycon Alves Barbosa",
       "iniciais": "M",
-      "posicao": 3,
+      "posicao": 2,
       "pontos": 1240,
       "faixa": "Bronze",
       "pct_comissao": 27,
@@ -115,7 +81,7 @@
       "nome": "Julio",
       "nome_completo": "Julio Marcos Ramos Mendes",
       "iniciais": "J",
-      "posicao": 4,
+      "posicao": 3,
       "pontos": 320,
       "faixa": null,
       "pct_comissao": null,
@@ -138,6 +104,24 @@
           "pontos": 160
         }
       ]
+    },
+    {
+      "codigo": "45",
+      "nome": "Roseanne",
+      "nome_completo": "Peres Campos",
+      "iniciais": "R",
+      "posicao": 4,
+      "pontos": 0,
+      "faixa": null,
+      "pct_comissao": null,
+      "movimento": 0,
+      "ganho_semana": 0,
+      "proxima_faixa": {
+        "faixa": "Bronze",
+        "faltam": 1000,
+        "pct": 27
+      },
+      "detalhe": []
     }
   ],
   "conquistas": [
@@ -156,13 +140,6 @@
       "dias": 26
     },
     {
-      "codigo": "36",
-      "nome": "Bruno",
-      "faixa": "Prata",
-      "desde": "2026-08-27",
-      "dias": 27
-    },
-    {
       "codigo": "4",
       "nome": "Thalles",
       "faixa": "Bronze",
@@ -175,19 +152,12 @@
       "faixa": "Prata",
       "desde": "2026-08-07",
       "dias": 47
-    },
-    {
-      "codigo": "36",
-      "nome": "Bruno",
-      "faixa": "Bronze",
-      "desde": "2026-08-04",
-      "dias": 50
     }
   ],
   "resumo": {
     "corretores": 4,
-    "em_faixa": 3,
-    "total_pontos": 7680,
+    "em_faixa": 2,
+    "total_pontos": 4760,
     "tem_historico": true
   }
 }
