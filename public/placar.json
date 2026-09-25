@@ -2,8 +2,8 @@
   "ciclo": "2026-Q3",
   "inicio": "2026-07-01",
   "fim": "2026-09-30",
-  "dias_restantes": 7,
-  "atualizado_em": "2026-09-23T23:00:27",
+  "dias_restantes": 5,
+  "atualizado_em": "2026-09-25T00:07:33",
   "faixas": [
     {
       "nome": "Ouro",
@@ -130,28 +130,28 @@
       "nome": "Thalles",
       "faixa": "Ouro",
       "desde": "2026-08-31",
-      "dias": 23
+      "dias": 25
     },
     {
       "codigo": "2",
       "nome": "Maycon",
       "faixa": "Bronze",
       "desde": "2026-08-28",
-      "dias": 26
+      "dias": 28
     },
     {
       "codigo": "4",
       "nome": "Thalles",
       "faixa": "Bronze",
       "desde": "2026-08-07",
-      "dias": 47
+      "dias": 49
     },
     {
       "codigo": "4",
       "nome": "Thalles",
       "faixa": "Prata",
       "desde": "2026-08-07",
-      "dias": 47
+      "dias": 49
     }
   ],
   "resumo": {
