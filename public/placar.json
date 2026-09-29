@@ -2,8 +2,8 @@
   "ciclo": "2026-Q3",
   "inicio": "2026-07-01",
   "fim": "2026-09-30",
-  "dias_restantes": 3,
-  "atualizado_em": "2026-09-27T23:47:52",
+  "dias_restantes": 1,
+  "atualizado_em": "2026-09-29T00:46:09",
   "faixas": [
     {
       "nome": "Ouro",
@@ -28,17 +28,17 @@
       "nome_completo": "Maycon Alves Barbosa",
       "iniciais": "M",
       "posicao": 1,
-      "pontos": 4760,
+      "pontos": 5080,
       "faixa": "Ouro",
       "pct_comissao": 38,
       "movimento": 1,
-      "ganho_semana": 3520,
+      "ganho_semana": 3840,
       "proxima_faixa": null,
       "detalhe": [
         {
           "criterio": "Cadastro de lead no CRM",
-          "qtd": 29,
-          "pontos": 4640
+          "qtd": 31,
+          "pontos": 4960
         },
         {
           "criterio": "Captacao sem exclusividade",
@@ -53,17 +53,17 @@
       "nome_completo": "Felicissimo Thalles de Melho Sousa",
       "iniciais": "T",
       "posicao": 2,
-      "pontos": 3200,
+      "pontos": 3240,
       "faixa": "Ouro",
       "pct_comissao": 38,
       "movimento": -1,
-      "ganho_semana": 0,
+      "ganho_semana": 40,
       "proxima_faixa": null,
       "detalhe": [
         {
           "criterio": "Captacao sem exclusividade",
-          "qtd": 4,
-          "pontos": 160
+          "qtd": 5,
+          "pontos": 200
         },
         {
           "criterio": "Cadastro de lead no CRM",
@@ -126,48 +126,48 @@
       "nome": "Maycon",
       "faixa": "Prata",
       "desde": "2026-09-25",
-      "dias": 2
+      "dias": 4
     },
     {
       "codigo": "2",
       "nome": "Maycon",
       "faixa": "Ouro",
       "desde": "2026-09-25",
-      "dias": 2
+      "dias": 4
     },
     {
       "codigo": "4",
       "nome": "Thalles",
       "faixa": "Ouro",
       "desde": "2026-08-31",
-      "dias": 27
+      "dias": 29
     },
     {
       "codigo": "2",
       "nome": "Maycon",
       "faixa": "Bronze",
       "desde": "2026-08-28",
-      "dias": 30
+      "dias": 32
     },
     {
       "codigo": "4",
       "nome": "Thalles",
       "faixa": "Bronze",
       "desde": "2026-08-07",
-      "dias": 51
+      "dias": 53
     },
     {
       "codigo": "4",
       "nome": "Thalles",
       "faixa": "Prata",
       "desde": "2026-08-07",
-      "dias": 51
+      "dias": 53
     }
   ],
   "resumo": {
     "corretores": 4,
     "em_faixa": 2,
-    "total_pontos": 8280,
+    "total_pontos": 8640,
     "tem_historico": true
   }
 }
