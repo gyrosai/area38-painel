@@ -3,7 +3,7 @@
   "inicio": "2026-07-01",
   "fim": "2026-09-30",
   "dias_restantes": 0,
-  "atualizado_em": "2026-10-03T00:18:58",
+  "atualizado_em": "2026-10-04T00:27:19",
   "faixas": [
     {
       "nome": "Ouro",
@@ -126,42 +126,42 @@
       "nome": "Maycon",
       "faixa": "Prata",
       "desde": "2026-09-25",
-      "dias": 8
+      "dias": 9
     },
     {
       "codigo": "2",
       "nome": "Maycon",
       "faixa": "Ouro",
       "desde": "2026-09-25",
-      "dias": 8
+      "dias": 9
     },
     {
       "codigo": "4",
       "nome": "Thalles",
       "faixa": "Ouro",
       "desde": "2026-08-31",
-      "dias": 33
+      "dias": 34
     },
     {
       "codigo": "2",
       "nome": "Maycon",
       "faixa": "Bronze",
       "desde": "2026-08-28",
-      "dias": 36
+      "dias": 37
     },
     {
       "codigo": "4",
       "nome": "Thalles",
       "faixa": "Bronze",
       "desde": "2026-08-07",
-      "dias": 57
+      "dias": 58
     },
     {
       "codigo": "4",
       "nome": "Thalles",
       "faixa": "Prata",
       "desde": "2026-08-07",
-      "dias": 57
+      "dias": 58
     }
   ],
   "resumo": {
