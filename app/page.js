@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import {
-  carregarPlacar, corDaFaixa, formatarPontos, horaDe, estadoDoDado,
+  carregarPlacar, corDaFaixa, formatarPontos, formatarReais, horaDe, estadoDoDado,
 } from "@/lib/dados";
 
 /* Cor oficial da Área 38. Não usar #0D417D — é a antiga. */
@@ -21,6 +21,16 @@ const PODIO = [
     texto: "#8A5222", medalha: "#B87333" },
 ];
 const AZUL_ESC = "#1B3A66";
+
+/* Trava de receita do Q4: faixa com exige_receita (hoje, Ouro) so vale com
+   ao menos uma receita lancada no trimestre. Quem tem pontos de Ouro sem
+   receita aparece na faixa real (Prata) com este selo ao lado — o ambar
+   sinaliza "falta um passo", nao erro. */
+const TRAVA = { fundo: "#FFF4E0", borda: "#D97706", texto: "#8A5A12" };
+
+/** O corretor esta travado quando a faixa real ficou abaixo da que os
+ *  pontos sozinhos dariam (placar.json: trava_receita + faixa_sem_trava). */
+const travadoPorReceita = (c) => Boolean(c.trava_receita && c.faixa_sem_trava);
 
 /* Espaçamento entre itens por MARGEM, não por `gap`.
 
@@ -107,7 +117,7 @@ export default function Painel() {
         <section style={S.coluna}>
           <h2 style={S.tituloSecao}>Ranking do trimestre</h2>
           <div className="gy-10" style={S.topo3}>
-            {top3.map((x) => <CardTopo key={x.codigo} c={x} nome={curto[x.codigo]} />)}
+            {top3.map((x) => <CardTopo key={x.codigo} c={x} nome={curto[x.codigo]} faixas={dados.faixas} />)}
           </div>
           {resto.length > 0 && (
             <div style={S.listaResto}>
@@ -216,6 +226,9 @@ export default function Painel() {
               </div>
             ))}
             <div style={S.faixaNota}>
+              Ouro exige receita no trimestre
+            </div>
+            <div style={{ ...S.faixaNota, marginTop: 3 }}>
               Comissão aplicada no trimestre seguinte
             </div>
           </div>
@@ -268,14 +281,22 @@ function Topo({ dados, agora, erro }) {
 const CURTO = [
   [/lead/i, ["lead", "leads"]],
   [/com exclusividade/i, ["captação exclusiva", "captações exclusivas"]],
-  [/feedback/i, ["feedback", "feedbacks"]],
-  [/sem exclusividade/i, ["captação", "captações"]],
 ];
 
+/* Captacao simples e feedback continuam pontuando, mas seus rotulos saem da
+   TV (pedido do Q4): a linha de detalhe fica so com leads, captacao
+   exclusiva, reuniao e receita. */
+const OCULTO = [/sem exclusividade/i, /feedback/i];
+
 function resumoDetalhe(detalhe) {
-  if (!detalhe.length) return "sem pontuação registrada";
-  return detalhe
+  const visiveis = detalhe.filter((d) => !OCULTO.some((re) => re.test(d.criterio)));
+  if (!visiveis.length) return "sem pontuação registrada";
+  return visiveis
     .map((d) => {
+      /* Receita mostra o dinheiro E os pontos — os pontos sao floor() por
+         lancamento, entao os R$ vem prontos no placar.json, sem derivacao. */
+      if (d.reais != null)
+        return `${formatarReais(d.reais)} em receita · ${formatarPontos(d.pontos)} pts`;
       const achado = CURTO.find(([re]) => re.test(d.criterio));
       const nome = achado ? achado[1][d.qtd === 1 ? 0 : 1] : d.criterio.toLowerCase();
       return `${d.qtd} ${nome}`;
@@ -283,9 +304,15 @@ function resumoDetalhe(detalhe) {
     .join(" · ");
 }
 
-function CardTopo({ c, nome }) {
+function CardTopo({ c, nome, faixas }) {
   const p = PODIO[c.posicao - 1] || PODIO[2];
   const faixa = corDaFaixa(c.faixa);
+  const trava = travadoPorReceita(c);
+  /* % de comissao da faixa que os pontos dariam sem a trava, para a linha
+     "receita libera Ouro · 38%". */
+  const pctSemTrava = trava
+    ? (faixas || []).find((f) => f.nome === c.faixa_sem_trava)?.pct
+    : null;
   return (
     <div className="gx-14" style={{ ...S.card, background: p.fundo, borderBottom: `3px solid ${p.borda}` }}>
       <Avatar iniciais={c.iniciais} grande />
@@ -303,14 +330,25 @@ function CardTopo({ c, nome }) {
               abaixo do mínimo
             </span>
           )}
+          {trava && (
+            <span style={{ ...S.selo, background: TRAVA.fundo, color: TRAVA.texto,
+                           borderColor: TRAVA.borda }}>
+              {c.faixa_sem_trava} bloqueado · sem receita
+            </span>
+          )}
         </div>
         <div style={S.cardDetalhe}>{resumoDetalhe(c.detalhe)}</div>
         <div style={{ ...S.cardFaixa, color: p.texto }}>
-          {c.proxima_faixa
-            ? `faltam ${formatarPontos(c.proxima_faixa.faltam)} pts para ${c.proxima_faixa.faixa} · ${c.proxima_faixa.pct}%`
-            : "faixa máxima do trimestre"}
+          {trava
+            /* Sem a linha abaixo, quem tem pontos de Ouro travado veria
+               "faixa máxima do trimestre" ao lado do selo de bloqueio —
+               uma contradicao na parede do escritorio. */
+            ? `registre uma receita para liberar ${c.faixa_sem_trava}${pctSemTrava ? ` · ${pctSemTrava}%` : ""}`
+            : c.proxima_faixa
+              ? `faltam ${formatarPontos(c.proxima_faixa.faltam)} pts para ${c.proxima_faixa.faixa} · ${c.proxima_faixa.pct}%`
+              : "faixa máxima do trimestre"}
         </div>
-        {c.proxima_faixa && (
+        {!trava && c.proxima_faixa && (
           <Barra valor={c.pontos} total={c.pontos + c.proxima_faixa.faltam}
                  cor={p.borda} fina />
         )}
@@ -333,6 +371,12 @@ function LinhaResto({ c, nome }) {
       {c.faixa && (
         <span style={{ ...S.selo, background: cor.fundo, color: cor.texto, borderColor: cor.borda }}>
           {c.faixa}
+        </span>
+      )}
+      {travadoPorReceita(c) && (
+        <span style={{ ...S.selo, background: TRAVA.fundo, color: TRAVA.texto,
+                       borderColor: TRAVA.borda }}>
+          {c.faixa_sem_trava} bloqueado · sem receita
         </span>
       )}
       <span style={S.linhaPontos}>{formatarPontos(c.pontos)}</span>
@@ -511,7 +555,8 @@ const S = {
                 maxHeight: "42%", overflow: "hidden" },
   linha: { display: "flex", alignItems: "center", padding: "9px 0",
            borderBottom: "1px solid #EEF2F7" },
-  linhaNome: { flex: 1, fontSize: "0.95em", fontWeight: 600 },
+  linhaNome: { flex: 1, fontSize: "0.95em", fontWeight: 600, whiteSpace: "nowrap",
+               overflow: "hidden", textOverflow: "ellipsis" },
   linhaPontos: { fontSize: "0.95em", fontWeight: 800, minWidth: 58, textAlign: "right" },
   linhaPos: { fontSize: 13, color: "#94A3B8", minWidth: 30, textAlign: "right", fontWeight: 700 },
   mov: { fontSize: 12, fontWeight: 700, minWidth: 26, textAlign: "right" },
