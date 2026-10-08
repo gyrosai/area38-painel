@@ -3,7 +3,7 @@
   "inicio": "2026-07-01",
   "fim": "2026-09-30",
   "dias_restantes": 0,
-  "atualizado_em": "2026-10-07T02:26:13",
+  "atualizado_em": "2026-10-07T23:00:23",
   "faixas": [
     {
       "nome": "Ouro",
@@ -31,6 +31,8 @@
       "pontos": 5080,
       "faixa": "Ouro",
       "pct_comissao": 38,
+      "trava_receita": false,
+      "faixa_sem_trava": "Ouro",
       "movimento": 0,
       "ganho_semana": 0,
       "proxima_faixa": null,
@@ -56,6 +58,8 @@
       "pontos": 3240,
       "faixa": "Ouro",
       "pct_comissao": 38,
+      "trava_receita": false,
+      "faixa_sem_trava": "Ouro",
       "movimento": 0,
       "ganho_semana": 0,
       "proxima_faixa": null,
@@ -81,6 +85,8 @@
       "pontos": 320,
       "faixa": null,
       "pct_comissao": null,
+      "trava_receita": false,
+      "faixa_sem_trava": null,
       "movimento": 0,
       "ganho_semana": 0,
       "proxima_faixa": {
@@ -110,6 +116,8 @@
       "pontos": 0,
       "faixa": null,
       "pct_comissao": null,
+      "trava_receita": false,
+      "faixa_sem_trava": null,
       "movimento": 0,
       "ganho_semana": 0,
       "proxima_faixa": {
