@@ -81,7 +81,6 @@ export default function Painel() {
   const curto = montarNomesCurtos(c);
   const top3 = c.slice(0, 3);
   const resto = c.slice(3);
-  const semHistorico = !dados.resumo.tem_historico;
 
   /* Quanto do trimestre já passou. Cru do dado: início, fim e hoje. */
   const ini = new Date(dados.inicio + "T00:00:00");
@@ -90,9 +89,11 @@ export default function Painel() {
   const pctTrimestre = Math.min(100, Math.max(0,
     Math.round(((total - dados.dias_restantes) / total) * 100)));
 
-  const maisPontuou = [...c]
+  /* Ate 3 corretores com pontos na semana, do maior para o menor. */
+  const semanaTop = [...c]
     .filter((x) => x.ganho_semana != null && x.ganho_semana > 0)
-    .sort((a, b) => b.ganho_semana - a.ganho_semana)[0];
+    .sort((a, b) => b.ganho_semana - a.ganho_semana)
+    .slice(0, 3);
 
   const maisPerto = [...c]
     .filter((x) => x.proxima_faixa)
@@ -129,71 +130,11 @@ export default function Painel() {
         {/* --------------------------------------------- coluna 2: destaques */}
         <section style={S.coluna}>
           <h2 style={S.tituloSecao}>Destaques</h2>
-
-          <div style={S.bloco}>
-            <Rotulo texto="Quem mais pontuou na semana" />
-            {maisPontuou ? (
-              <div className="gx-12" style={S.destaqueLinha}>
-                <Avatar iniciais={maisPontuou.iniciais} />
-                <div style={{ flex: 1 }}>
-                  <div style={S.destaqueNome}>{curto[maisPontuou.codigo]}</div>
-                </div>
-                <div style={{ textAlign: "right" }}>
-                  <div style={S.destaqueValor}>+{formatarPontos(maisPontuou.ganho_semana)}</div>
-                  <div style={S.destaqueCap}>pontos</div>
-                </div>
-              </div>
-            ) : (
-              <Placeholder texto={
-                semHistorico
-                  ? "Disponível depois de uma semana de apuração"
-                  : "Nenhuma pontuação nova nos últimos 7 dias"} />
-            )}
-          </div>
-
-          <div style={S.bloco}>
-            <Rotulo texto="Mais perto de subir de faixa" />
-            {maisPerto ? (
-              <>
-                <div className="gx-12" style={S.destaqueLinha}>
-                  <Avatar iniciais={maisPerto.iniciais} />
-                  <div style={{ flex: 1 }}>
-                    <div style={S.destaqueNome}>{curto[maisPerto.codigo]}</div>
-                  </div>
-                  <div style={{ textAlign: "right" }}>
-                    <div style={S.destaqueValor}>{formatarPontos(maisPerto.proxima_faixa.faltam)}</div>
-                    <div style={S.destaqueCap}>
-                      para {maisPerto.proxima_faixa.faixa} · {maisPerto.proxima_faixa.pct}%
-                    </div>
-                  </div>
-                </div>
-                <Barra
-                  valor={maisPerto.pontos}
-                  total={maisPerto.pontos + maisPerto.proxima_faixa.faltam}
-                />
-              </>
-            ) : <Placeholder texto="Todos na faixa máxima" />}
-          </div>
-
-          {dados.conquistas?.length > 0 && (
-            <div style={S.bloco}>
-              <Rotulo texto="Conquistas do trimestre" />
-              {dados.conquistas.slice(0, 2).map((q, i) => (
-                <div key={i} className="gx-10" style={S.conquista}>
-                  <Avatar iniciais={iniciaisDe(q.nome)} pequeno />
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={S.conquistaNome}>{curto[q.codigo] || q.nome}</div>
-                    <div style={{ ...S.conquistaFaixa, color: corDaFaixa(q.faixa).texto }}>
-                      faixa {q.faixa} conquistada
-                    </div>
-                  </div>
-                  <span style={S.conquistaQuando}>
-                    {q.dias === 0 ? "hoje" : q.dias === 1 ? "ontem" : `há ${q.dias} dias`}
-                  </span>
-                </div>
-              ))}
-            </div>
-          )}
+          <CardSemana lista={semanaTop} curto={curto} />
+          <CardProximaFaixa alvo={maisPerto} curto={curto} criterios={dados.criterios} />
+          {dados.conquistas?.length > 0
+            ? <CardConquistas conquistas={dados.conquistas} curto={curto} />
+            : <CardComoPontuar criterios={dados.criterios} ciclo={dados.ciclo} />}
         </section>
 
         {/* ------------------------------------------------ coluna 3: números */}
@@ -273,6 +214,139 @@ function Topo({ dados, agora, erro }) {
   );
 }
 
+/* --------------------------------------------------- coluna de destaques */
+/* Os tres cards usam SEMPRE a mesma moldura (S.bloco, flex:1): tres cards
+   por coluna, gap de 12px entre eles e zero na base — a coluna fecha
+   exatamente na altura do ranking, sem faixa morta nem estouro. Por isso o
+   ultimo card nao leva marginBottom. */
+
+function CardSemana({ lista, curto }) {
+  return (
+    <div style={S.bloco}>
+      <Rotulo texto="Quem mais pontuou na semana" />
+      {lista.length === 0 ? (
+        <Placeholder texto="sem pontos nesta semana" />
+      ) : (
+        <>
+          <div className="gx-12" style={S.destaqueLinha}>
+            <Avatar iniciais={lista[0].iniciais} />
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={S.destaqueNome}>{curto[lista[0].codigo]}</div>
+            </div>
+            <div style={{ textAlign: "right" }}>
+              <div style={S.destaqueValor}>+{formatarPontos(lista[0].ganho_semana)}</div>
+              <div style={S.destaqueCap}>pontos</div>
+            </div>
+          </div>
+          {lista.slice(1).map((x) => (
+            <div key={x.codigo} className="gx-10" style={S.conquista}>
+              <Avatar iniciais={x.iniciais} pequeno />
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={S.conquistaNome}>{curto[x.codigo]}</div>
+              </div>
+              <span style={S.semanaPts}>+{formatarPontos(x.ganho_semana)}</span>
+            </div>
+          ))}
+          {lista.length === 1 && (
+            <Placeholder texto="ninguém mais pontuou esta semana" />
+          )}
+        </>
+      )}
+    </div>
+  );
+}
+
+function CardProximaFaixa({ alvo, curto, criterios }) {
+  return (
+    <div style={S.bloco}>
+      <Rotulo texto="Mais perto de subir de faixa" />
+      {alvo ? (
+        <>
+          <div className="gx-12" style={S.destaqueLinha}>
+            <Avatar iniciais={alvo.iniciais} />
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={S.destaqueNome}>{curto[alvo.codigo]}</div>
+            </div>
+            <div style={{ textAlign: "right" }}>
+              <div style={S.destaqueValor}>{formatarPontos(alvo.proxima_faixa.faltam)}</div>
+              <div style={S.destaqueCap}>
+                para {alvo.proxima_faixa.faixa} · {alvo.proxima_faixa.pct}%
+              </div>
+            </div>
+          </div>
+          <Barra valor={alvo.pontos} total={alvo.pontos + alvo.proxima_faixa.faltam} />
+          <Equivale faltam={alvo.proxima_faixa.faltam} criterios={criterios} />
+        </>
+      ) : <Placeholder texto="Todos na faixa máxima" />}
+    </div>
+  );
+}
+
+/* "Faltam 880 pts" e abstrato demais na TV; traduzido nos atos do ciclo
+   vira meta concreta. Teto para cima: 880/120 = 7,3 -> 8 cadastros. Os
+   pts por ato vem dos criterios ativos do placar.json, nao ficam
+   chumbados aqui. */
+function Equivale({ faltam, criterios }) {
+  const ptsDe = (tipo) =>
+    (criterios || []).find((x) => x.tipo_ato === tipo)?.pts_por_ato;
+  const partes = [];
+  const lead = ptsDe("cadastro_lead");
+  const reu = ptsDe("reuniao_presencial");
+  if (lead > 0) {
+    const n = Math.ceil(faltam / lead);
+    partes.push(`${n} ${n === 1 ? "cadastro" : "cadastros"}`);
+  }
+  if (reu > 0) {
+    const m = Math.ceil(faltam / reu);
+    partes.push(`${m} ${m === 1 ? "reunião" : "reuniões"}`);
+  }
+  if (!partes.length) return null;
+  return <div style={S.nota}>equivale a {partes.join(" ou ")}</div>;
+}
+
+function CardConquistas({ conquistas, curto }) {
+  return (
+    <div style={{ ...S.bloco, marginBottom: 0 }}>
+      <Rotulo texto="Conquistas do trimestre" />
+      {conquistas.slice(0, 2).map((q, i) => (
+        <div key={i} className="gx-10" style={S.conquista}>
+          <Avatar iniciais={iniciaisDe(q.nome)} pequeno />
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={S.conquistaNome}>{curto[q.codigo] || q.nome}</div>
+            <div style={{ ...S.conquistaFaixa, color: corDaFaixa(q.faixa).texto }}>
+              faixa {q.faixa} conquistada
+            </div>
+          </div>
+          <span style={S.conquistaQuando}>
+            {q.dias === 0 ? "hoje" : q.dias === 1 ? "ontem" : `há ${q.dias} dias`}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* Sem conquistas no ciclo, o terceiro card vira a tabela oficial de pontos
+   do trimestre — mesma moldura, mesmo lugar, nunca um buraco na coluna. */
+function CardComoPontuar({ criterios, ciclo }) {
+  return (
+    <div style={{ ...S.bloco, marginBottom: 0 }}>
+      <Rotulo texto={`Como pontuar no ${String(ciclo || "").slice(5)}`} />
+      {(criterios || []).map((r) => (
+        <div key={r.tipo_ato} style={S.regraLinha}>
+          <span style={S.regraTexto}>{r.rotulo}</span>
+          <span style={S.regraPts}>
+            {r.pts_por_valor
+              ? `R$ ${formatarPontos(Math.round(r.pts_por_valor.reais / r.pts_por_valor.pontos))} = 1 pt`
+              : `${formatarPontos(r.pts_por_ato)} pts`}
+          </span>
+        </div>
+      ))}
+      <div style={S.nota}>Ouro exige receita no trimestre</div>
+    </div>
+  );
+}
+
 /* Na TV, "11 cadastro de lead no CRM" ocupa a linha inteira e se le mal de
    longe. Rotulo curto, no plural certo. */
 /* A comparacao ignora acento: o arquivo de regras e escrito sem acento para
@@ -280,6 +354,7 @@ function Topo({ dados, agora, erro }) {
    sem acento aqui e nao casaria com a chave acentuada. */
 const CURTO = [
   [/lead/i, ["lead", "leads"]],
+  [/cadastro/i, ["cadastro no CRM", "cadastros no CRM"]],
   [/com exclusividade/i, ["captação exclusiva", "captações exclusivas"]],
 ];
 
@@ -584,6 +659,9 @@ const S = {
   conquistaNome: { fontSize: "0.9em", fontWeight: 700 },
   conquistaFaixa: { fontSize: "0.68em", fontWeight: 600, marginTop: 1 },
   conquistaQuando: { fontSize: "0.68em", color: "#94A3B8", whiteSpace: "nowrap" },
+  /* 2o e 3o da semana e linhas de apoio (equivale, nota do Como pontuar) */
+  semanaPts: { fontSize: "0.85em", fontWeight: 800, color: AZUL },
+  nota: { fontSize: 11, color: "#7B8794", marginTop: 9 },
 
   barraFora: { height: 7, background: "rgba(30,41,59,.09)", borderRadius: 20,
                marginTop: 13, overflow: "hidden", width: "100%" },
