@@ -1,9 +1,9 @@
 {
-  "ciclo": "2026-Q4",
-  "inicio": "2026-10-01",
-  "fim": "2026-12-31",
-  "dias_restantes": 84,
-  "atualizado_em": "2026-10-08T12:06:45",
+  "ciclo": "2026-Q3",
+  "inicio": "2026-07-01",
+  "fim": "2026-09-30",
+  "dias_restantes": 0,
+  "atualizado_em": "2026-10-09T00:17:49",
   "faixas": [
     {
       "nome": "Ouro",
@@ -21,60 +21,94 @@
       "pct": 27
     }
   ],
-  "corretores": [
+  "criterios": [
     {
-      "codigo": "38",
-      "nome": "Julio",
-      "nome_completo": "Julio Marcos Ramos Mendes",
-      "iniciais": "J",
-      "posicao": 1,
-      "pontos": 120,
-      "faixa": null,
-      "pct_comissao": null,
-      "trava_receita": false,
-      "faixa_sem_trava": null,
-      "movimento": 1,
-      "ganho_semana": 120,
-      "proxima_faixa": {
-        "faixa": "Bronze",
-        "faltam": 880,
-        "pct": 27
-      },
-      "detalhe": [
-        {
-          "criterio": "Cadastro no CRM",
-          "qtd": 1,
-          "pontos": 120
-        }
-      ]
+      "tipo_ato": "cadastro_lead",
+      "rotulo": "Cadastro de lead no CRM",
+      "pts_por_ato": 160,
+      "pts_por_valor": null
     },
+    {
+      "tipo_ato": "captacao_exclusiva",
+      "rotulo": "Captacao com exclusividade",
+      "pts_por_ato": 120,
+      "pts_por_valor": null
+    },
+    {
+      "tipo_ato": "feedback_proprietario",
+      "rotulo": "Cadastro de feedback ao proprietario",
+      "pts_por_ato": 80,
+      "pts_por_valor": null
+    },
+    {
+      "tipo_ato": "captacao_simples",
+      "rotulo": "Captacao sem exclusividade",
+      "pts_por_ato": 40,
+      "pts_por_valor": null
+    }
+  ],
+  "corretores": [
     {
       "codigo": "2",
       "nome": "Maycon",
       "nome_completo": "Maycon Alves Barbosa",
       "iniciais": "M",
-      "posicao": 2,
-      "pontos": 0,
-      "faixa": null,
-      "pct_comissao": null,
+      "posicao": 1,
+      "pontos": 5080,
+      "faixa": "Ouro",
+      "pct_comissao": 38,
       "trava_receita": false,
-      "faixa_sem_trava": null,
-      "movimento": -1,
+      "faixa_sem_trava": "Ouro",
+      "movimento": 0,
       "ganho_semana": 0,
-      "proxima_faixa": {
-        "faixa": "Bronze",
-        "faltam": 1000,
-        "pct": 27
-      },
-      "detalhe": []
+      "proxima_faixa": null,
+      "detalhe": [
+        {
+          "criterio": "Cadastro de lead no CRM",
+          "qtd": 31,
+          "pontos": 4960
+        },
+        {
+          "criterio": "Captacao sem exclusividade",
+          "qtd": 3,
+          "pontos": 120
+        }
+      ]
     },
     {
       "codigo": "4",
       "nome": "Thalles",
       "nome_completo": "Felicissimo Thalles de Melho Sousa",
       "iniciais": "T",
+      "posicao": 2,
+      "pontos": 3240,
+      "faixa": "Ouro",
+      "pct_comissao": 38,
+      "trava_receita": false,
+      "faixa_sem_trava": "Ouro",
+      "movimento": 0,
+      "ganho_semana": 0,
+      "proxima_faixa": null,
+      "detalhe": [
+        {
+          "criterio": "Captacao sem exclusividade",
+          "qtd": 5,
+          "pontos": 200
+        },
+        {
+          "criterio": "Cadastro de lead no CRM",
+          "qtd": 19,
+          "pontos": 3040
+        }
+      ]
+    },
+    {
+      "codigo": "38",
+      "nome": "Julio",
+      "nome_completo": "Julio Marcos Ramos Mendes",
+      "iniciais": "J",
       "posicao": 3,
-      "pontos": 0,
+      "pontos": 320,
       "faixa": null,
       "pct_comissao": null,
       "trava_receita": false,
@@ -83,10 +117,21 @@
       "ganho_semana": 0,
       "proxima_faixa": {
         "faixa": "Bronze",
-        "faltam": 1000,
+        "faltam": 680,
         "pct": 27
       },
-      "detalhe": []
+      "detalhe": [
+        {
+          "criterio": "Captacao sem exclusividade",
+          "qtd": 4,
+          "pontos": 160
+        },
+        {
+          "criterio": "Cadastro de lead no CRM",
+          "qtd": 1,
+          "pontos": 160
+        }
+      ]
     },
     {
       "codigo": "45",
@@ -109,11 +154,54 @@
       "detalhe": []
     }
   ],
-  "conquistas": [],
+  "conquistas": [
+    {
+      "codigo": "2",
+      "nome": "Maycon",
+      "faixa": "Prata",
+      "desde": "2026-09-25",
+      "dias": 14
+    },
+    {
+      "codigo": "2",
+      "nome": "Maycon",
+      "faixa": "Ouro",
+      "desde": "2026-09-25",
+      "dias": 14
+    },
+    {
+      "codigo": "4",
+      "nome": "Thalles",
+      "faixa": "Ouro",
+      "desde": "2026-08-31",
+      "dias": 39
+    },
+    {
+      "codigo": "2",
+      "nome": "Maycon",
+      "faixa": "Bronze",
+      "desde": "2026-08-28",
+      "dias": 42
+    },
+    {
+      "codigo": "4",
+      "nome": "Thalles",
+      "faixa": "Bronze",
+      "desde": "2026-08-07",
+      "dias": 63
+    },
+    {
+      "codigo": "4",
+      "nome": "Thalles",
+      "faixa": "Prata",
+      "desde": "2026-08-07",
+      "dias": 63
+    }
+  ],
   "resumo": {
     "corretores": 4,
-    "em_faixa": 0,
-    "total_pontos": 120,
+    "em_faixa": 2,
+    "total_pontos": 8640,
     "tem_historico": true
   }
 }
