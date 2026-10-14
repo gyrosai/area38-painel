@@ -3,7 +3,7 @@
   "inicio": "2026-10-01",
   "fim": "2026-12-31",
   "dias_restantes": 79,
-  "atualizado_em": "2026-10-13T05:59:29",
+  "atualizado_em": "2026-10-13T23:19:53",
   "faixas": [
     {
       "nome": "Ouro",
@@ -54,7 +54,7 @@
     {
       "codigo": "38",
       "nome": "Julio",
-      "nome_completo": null,
+      "nome_completo": "Julio Marcos Ramos Mendes",
       "iniciais": "J",
       "posicao": 1,
       "pontos": 120,
@@ -78,57 +78,69 @@
       ]
     },
     {
-      "codigo": "2",
-      "nome": "Maycon",
-      "nome_completo": null,
-      "iniciais": "M",
-      "posicao": 2,
-      "pontos": 0,
-      "faixa": null,
-      "pct_comissao": null,
-      "trava_receita": false,
-      "faixa_sem_trava": null,
-      "movimento": 0,
-      "ganho_semana": 0,
-      "proxima_faixa": {
-        "faixa": "Bronze",
-        "faltam": 1000,
-        "pct": 27
-      },
-      "detalhe": []
-    },
-    {
       "codigo": "4",
       "nome": "Thalles",
-      "nome_completo": null,
+      "nome_completo": "Felicissimo Thalles de Melho Sousa",
       "iniciais": "T",
-      "posicao": 3,
-      "pontos": 0,
+      "posicao": 2,
+      "pontos": 120,
       "faixa": null,
       "pct_comissao": null,
       "trava_receita": false,
       "faixa_sem_trava": null,
-      "movimento": 0,
-      "ganho_semana": 0,
+      "movimento": 1,
+      "ganho_semana": 120,
       "proxima_faixa": {
         "faixa": "Bronze",
-        "faltam": 1000,
+        "faltam": 880,
         "pct": 27
       },
-      "detalhe": []
+      "detalhe": [
+        {
+          "criterio": "Cadastro no CRM",
+          "qtd": 1,
+          "pontos": 120
+        }
+      ]
     },
     {
       "codigo": "45",
       "nome": "Roseanne",
-      "nome_completo": null,
+      "nome_completo": "Peres Campos",
       "iniciais": "R",
+      "posicao": 3,
+      "pontos": 120,
+      "faixa": null,
+      "pct_comissao": null,
+      "trava_receita": false,
+      "faixa_sem_trava": null,
+      "movimento": 1,
+      "ganho_semana": 120,
+      "proxima_faixa": {
+        "faixa": "Bronze",
+        "faltam": 880,
+        "pct": 27
+      },
+      "detalhe": [
+        {
+          "criterio": "Cadastro no CRM",
+          "qtd": 1,
+          "pontos": 120
+        }
+      ]
+    },
+    {
+      "codigo": "2",
+      "nome": "Maycon",
+      "nome_completo": "Maycon Alves Barbosa",
+      "iniciais": "M",
       "posicao": 4,
       "pontos": 0,
       "faixa": null,
       "pct_comissao": null,
       "trava_receita": false,
       "faixa_sem_trava": null,
-      "movimento": 0,
+      "movimento": -2,
       "ganho_semana": 0,
       "proxima_faixa": {
         "faixa": "Bronze",
@@ -142,7 +154,7 @@
   "resumo": {
     "corretores": 4,
     "em_faixa": 0,
-    "total_pontos": 120,
+    "total_pontos": 360,
     "tem_historico": true
   }
 }
