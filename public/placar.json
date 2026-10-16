@@ -2,8 +2,8 @@
   "ciclo": "2026-Q4",
   "inicio": "2026-10-01",
   "fim": "2026-12-31",
-  "dias_restantes": 78,
-  "atualizado_em": "2026-10-14T23:00:51",
+  "dias_restantes": 76,
+  "atualizado_em": "2026-10-16T00:56:47",
   "faixas": [
     {
       "nome": "Ouro",
@@ -52,17 +52,43 @@
   ],
   "corretores": [
     {
+      "codigo": "4",
+      "nome": "Thalles",
+      "nome_completo": "Felicissimo Thalles de Melho Sousa",
+      "iniciais": "T",
+      "posicao": 1,
+      "pontos": 600,
+      "faixa": null,
+      "pct_comissao": null,
+      "trava_receita": false,
+      "faixa_sem_trava": null,
+      "movimento": 2,
+      "ganho_semana": 600,
+      "proxima_faixa": {
+        "faixa": "Bronze",
+        "faltam": 400,
+        "pct": 27
+      },
+      "detalhe": [
+        {
+          "criterio": "Cadastro no CRM",
+          "qtd": 5,
+          "pontos": 600
+        }
+      ]
+    },
+    {
       "codigo": "45",
       "nome": "Roseanne",
       "nome_completo": "Peres Campos",
       "iniciais": "R",
-      "posicao": 1,
+      "posicao": 2,
       "pontos": 360,
       "faixa": null,
       "pct_comissao": null,
       "trava_receita": false,
       "faixa_sem_trava": null,
-      "movimento": 3,
+      "movimento": 2,
       "ganho_semana": 360,
       "proxima_faixa": {
         "faixa": "Bronze",
@@ -74,32 +100,6 @@
           "criterio": "Cadastro no CRM",
           "qtd": 3,
           "pontos": 360
-        }
-      ]
-    },
-    {
-      "codigo": "4",
-      "nome": "Thalles",
-      "nome_completo": "Felicissimo Thalles de Melho Sousa",
-      "iniciais": "T",
-      "posicao": 2,
-      "pontos": 240,
-      "faixa": null,
-      "pct_comissao": null,
-      "trava_receita": false,
-      "faixa_sem_trava": null,
-      "movimento": 1,
-      "ganho_semana": 240,
-      "proxima_faixa": {
-        "faixa": "Bronze",
-        "faltam": 760,
-        "pct": 27
-      },
-      "detalhe": [
-        {
-          "criterio": "Cadastro no CRM",
-          "qtd": 2,
-          "pontos": 240
         }
       ]
     },
@@ -154,7 +154,7 @@
   "resumo": {
     "corretores": 4,
     "em_faixa": 0,
-    "total_pontos": 720,
+    "total_pontos": 1080,
     "tem_historico": true
   }
 }
