@@ -2,8 +2,8 @@
   "ciclo": "2026-Q4",
   "inicio": "2026-10-01",
   "fim": "2026-12-31",
-  "dias_restantes": 73,
-  "atualizado_em": "2026-10-19T12:15:00",
+  "dias_restantes": 72,
+  "atualizado_em": "2026-10-20T00:11:14",
   "faixas": [
     {
       "nome": "Ouro",
@@ -62,8 +62,8 @@
       "pct_comissao": null,
       "trava_receita": false,
       "faixa_sem_trava": null,
-      "movimento": 2,
-      "ganho_semana": 600,
+      "movimento": 1,
+      "ganho_semana": 480,
       "proxima_faixa": {
         "faixa": "Bronze",
         "faltam": 400,
@@ -88,8 +88,8 @@
       "pct_comissao": null,
       "trava_receita": false,
       "faixa_sem_trava": null,
-      "movimento": 2,
-      "ganho_semana": 360,
+      "movimento": 1,
+      "ganho_semana": 240,
       "proxima_faixa": {
         "faixa": "Bronze",
         "faltam": 640,
@@ -140,7 +140,7 @@
       "pct_comissao": null,
       "trava_receita": false,
       "faixa_sem_trava": null,
-      "movimento": -2,
+      "movimento": 0,
       "ganho_semana": 0,
       "proxima_faixa": {
         "faixa": "Bronze",
