@@ -3,7 +3,7 @@
   "inicio": "2026-10-01",
   "fim": "2026-12-31",
   "dias_restantes": 66,
-  "atualizado_em": "2026-10-26T00:27:36",
+  "atualizado_em": "2026-10-26T23:33:40",
   "faixas": [
     {
       "nome": "Ouro",
@@ -78,17 +78,43 @@
       ]
     },
     {
+      "codigo": "2",
+      "nome": "Maycon",
+      "nome_completo": "Maycon Alves Barbosa",
+      "iniciais": "M",
+      "posicao": 2,
+      "pontos": 480,
+      "faixa": null,
+      "pct_comissao": null,
+      "trava_receita": false,
+      "faixa_sem_trava": null,
+      "movimento": 2,
+      "ganho_semana": 480,
+      "proxima_faixa": {
+        "faixa": "Bronze",
+        "faltam": 520,
+        "pct": 27
+      },
+      "detalhe": [
+        {
+          "criterio": "Cadastro no CRM",
+          "qtd": 4,
+          "pontos": 480
+        }
+      ]
+    },
+    {
       "codigo": "45",
       "nome": "Roseanne",
       "nome_completo": "Peres Campos",
       "iniciais": "R",
-      "posicao": 2,
+      "posicao": 3,
       "pontos": 360,
       "faixa": null,
       "pct_comissao": null,
       "trava_receita": false,
       "faixa_sem_trava": null,
-      "movimento": 0,
+      "movimento": -1,
       "ganho_semana": 0,
       "proxima_faixa": {
         "faixa": "Bronze",
@@ -108,13 +134,13 @@
       "nome": "Julio",
       "nome_completo": "Julio Marcos Ramos Mendes",
       "iniciais": "J",
-      "posicao": 3,
+      "posicao": 4,
       "pontos": 120,
       "faixa": null,
       "pct_comissao": null,
       "trava_receita": false,
       "faixa_sem_trava": null,
-      "movimento": 0,
+      "movimento": -1,
       "ganho_semana": 0,
       "proxima_faixa": {
         "faixa": "Bronze",
@@ -128,33 +154,13 @@
           "pontos": 120
         }
       ]
-    },
-    {
-      "codigo": "2",
-      "nome": "Maycon",
-      "nome_completo": "Maycon Alves Barbosa",
-      "iniciais": "M",
-      "posicao": 4,
-      "pontos": 0,
-      "faixa": null,
-      "pct_comissao": null,
-      "trava_receita": false,
-      "faixa_sem_trava": null,
-      "movimento": 0,
-      "ganho_semana": 0,
-      "proxima_faixa": {
-        "faixa": "Bronze",
-        "faltam": 1000,
-        "pct": 27
-      },
-      "detalhe": []
     }
   ],
   "conquistas": [],
   "resumo": {
     "corretores": 4,
     "em_faixa": 0,
-    "total_pontos": 1080,
+    "total_pontos": 1560,
     "tem_historico": true
   }
 }
