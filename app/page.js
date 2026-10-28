@@ -67,9 +67,12 @@ export default function Painel() {
     window.addEventListener("resize", medir);
     const t1 = setInterval(buscar, INTERVALO_MS);
     const t2 = setInterval(() => setAgora(new Date()), 30000);
+    // Recarga completa 1x/hora: pega deploy novo do painel e limpa qualquer
+    // estado preso no navegador da TV.
+    const t3 = setTimeout(() => window.location.reload(), 60 * 60 * 1000);
     setAgora(new Date());
     return () => {
-      vivo = false; clearInterval(t1); clearInterval(t2);
+      vivo = false; clearInterval(t1); clearInterval(t2); clearTimeout(t3);
       window.removeEventListener("resize", medir);
     };
   }, []);
