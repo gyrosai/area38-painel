@@ -2,8 +2,8 @@
   "ciclo": "2026-Q4",
   "inicio": "2026-10-01",
   "fim": "2026-12-31",
-  "dias_restantes": 66,
-  "atualizado_em": "2026-10-26T23:33:40",
+  "dias_restantes": 64,
+  "atualizado_em": "2026-10-28T08:45:05",
   "faixas": [
     {
       "nome": "Ouro",
@@ -54,7 +54,7 @@
     {
       "codigo": "4",
       "nome": "Thalles",
-      "nome_completo": "Felicissimo Thalles de Melho Sousa",
+      "nome_completo": "Thalles",
       "iniciais": "T",
       "posicao": 1,
       "pontos": 600,
@@ -80,7 +80,7 @@
     {
       "codigo": "2",
       "nome": "Maycon",
-      "nome_completo": "Maycon Alves Barbosa",
+      "nome_completo": "Maycon",
       "iniciais": "M",
       "posicao": 2,
       "pontos": 480,
@@ -88,7 +88,7 @@
       "pct_comissao": null,
       "trava_receita": false,
       "faixa_sem_trava": null,
-      "movimento": 2,
+      "movimento": 1,
       "ganho_semana": 480,
       "proxima_faixa": {
         "faixa": "Bronze",
@@ -104,37 +104,11 @@
       ]
     },
     {
-      "codigo": "45",
-      "nome": "Roseanne",
-      "nome_completo": "Peres Campos",
-      "iniciais": "R",
-      "posicao": 3,
-      "pontos": 360,
-      "faixa": null,
-      "pct_comissao": null,
-      "trava_receita": false,
-      "faixa_sem_trava": null,
-      "movimento": -1,
-      "ganho_semana": 0,
-      "proxima_faixa": {
-        "faixa": "Bronze",
-        "faltam": 640,
-        "pct": 27
-      },
-      "detalhe": [
-        {
-          "criterio": "Cadastro no CRM",
-          "qtd": 3,
-          "pontos": 360
-        }
-      ]
-    },
-    {
       "codigo": "38",
       "nome": "Julio",
-      "nome_completo": "Julio Marcos Ramos Mendes",
+      "nome_completo": "Julio",
       "iniciais": "J",
-      "posicao": 4,
+      "posicao": 3,
       "pontos": 120,
       "faixa": null,
       "pct_comissao": null,
@@ -158,9 +132,9 @@
   ],
   "conquistas": [],
   "resumo": {
-    "corretores": 4,
+    "corretores": 3,
     "em_faixa": 0,
-    "total_pontos": 1560,
+    "total_pontos": 1200,
     "tem_historico": true
   }
 }
