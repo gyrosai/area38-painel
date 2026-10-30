@@ -3,7 +3,7 @@
   "inicio": "2026-10-01",
   "fim": "2026-12-31",
   "dias_restantes": 63,
-  "atualizado_em": "2026-10-29T00:04:24",
+  "atualizado_em": "2026-10-29T23:00:21",
   "faixas": [
     {
       "nome": "Ouro",
@@ -52,17 +52,43 @@
   ],
   "corretores": [
     {
+      "codigo": "4",
+      "nome": "Thalles",
+      "nome_completo": "Felicissimo Thalles de Melho Sousa",
+      "iniciais": "T",
+      "posicao": 1,
+      "pontos": 840,
+      "faixa": null,
+      "pct_comissao": null,
+      "trava_receita": false,
+      "faixa_sem_trava": null,
+      "movimento": 0,
+      "ganho_semana": 240,
+      "proxima_faixa": {
+        "faixa": "Bronze",
+        "faltam": 160,
+        "pct": 27
+      },
+      "detalhe": [
+        {
+          "criterio": "Cadastro no CRM",
+          "qtd": 7,
+          "pontos": 840
+        }
+      ]
+    },
+    {
       "codigo": "2",
       "nome": "Maycon",
       "nome_completo": "Maycon Alves Barbosa",
       "iniciais": "M",
-      "posicao": 1,
+      "posicao": 2,
       "pontos": 612,
       "faixa": null,
       "pct_comissao": null,
       "trava_receita": false,
       "faixa_sem_trava": null,
-      "movimento": 2,
+      "movimento": 1,
       "ganho_semana": 480,
       "proxima_faixa": {
         "faixa": "Bronze",
@@ -80,32 +106,6 @@
           "criterio": "Cadastro no CRM",
           "qtd": 4,
           "pontos": 480
-        }
-      ]
-    },
-    {
-      "codigo": "4",
-      "nome": "Thalles",
-      "nome_completo": "Felicissimo Thalles de Melho Sousa",
-      "iniciais": "T",
-      "posicao": 2,
-      "pontos": 600,
-      "faixa": null,
-      "pct_comissao": null,
-      "trava_receita": false,
-      "faixa_sem_trava": null,
-      "movimento": -1,
-      "ganho_semana": 0,
-      "proxima_faixa": {
-        "faixa": "Bronze",
-        "faltam": 400,
-        "pct": 27
-      },
-      "detalhe": [
-        {
-          "criterio": "Cadastro no CRM",
-          "qtd": 5,
-          "pontos": 600
         }
       ]
     },
@@ -166,7 +166,7 @@
   "resumo": {
     "corretores": 4,
     "em_faixa": 0,
-    "total_pontos": 1692,
+    "total_pontos": 1932,
     "tem_historico": true
   }
 }
