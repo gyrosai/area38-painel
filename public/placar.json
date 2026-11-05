@@ -2,8 +2,8 @@
   "ciclo": "2026-Q4",
   "inicio": "2026-10-01",
   "fim": "2026-12-31",
-  "dias_restantes": 58,
-  "atualizado_em": "2026-11-03T23:19:07",
+  "dias_restantes": 57,
+  "atualizado_em": "2026-11-04T23:31:09",
   "faixas": [
     {
       "nome": "Ouro",
@@ -57,23 +57,23 @@
       "nome_completo": "Felicissimo Thalles de Melho Sousa",
       "iniciais": "T",
       "posicao": 1,
-      "pontos": 840,
-      "faixa": null,
-      "pct_comissao": null,
+      "pontos": 1440,
+      "faixa": "Bronze",
+      "pct_comissao": 27,
       "trava_receita": false,
-      "faixa_sem_trava": null,
+      "faixa_sem_trava": "Bronze",
       "movimento": 1,
-      "ganho_semana": 240,
+      "ganho_semana": 840,
       "proxima_faixa": {
-        "faixa": "Bronze",
-        "faltam": 160,
-        "pct": 27
+        "faixa": "Prata",
+        "faltam": 560,
+        "pct": 32
       },
       "detalhe": [
         {
           "criterio": "Cadastro no CRM",
-          "qtd": 7,
-          "pontos": 840
+          "qtd": 12,
+          "pontos": 1440
         }
       ]
     },
@@ -83,17 +83,17 @@
       "nome_completo": "Maycon Alves Barbosa",
       "iniciais": "M",
       "posicao": 2,
-      "pontos": 612,
-      "faixa": null,
-      "pct_comissao": null,
+      "pontos": 1212,
+      "faixa": "Bronze",
+      "pct_comissao": 27,
       "trava_receita": false,
-      "faixa_sem_trava": null,
+      "faixa_sem_trava": "Bronze",
       "movimento": -1,
-      "ganho_semana": 0,
+      "ganho_semana": 600,
       "proxima_faixa": {
-        "faixa": "Bronze",
-        "faltam": 388,
-        "pct": 27
+        "faixa": "Prata",
+        "faltam": 788,
+        "pct": 32
       },
       "detalhe": [
         {
@@ -104,8 +104,8 @@
         },
         {
           "criterio": "Cadastro no CRM",
-          "qtd": 4,
-          "pontos": 480
+          "qtd": 9,
+          "pontos": 1080
         }
       ]
     },
@@ -160,13 +160,48 @@
           "pontos": 120
         }
       ]
+    },
+    {
+      "codigo": "46",
+      "nome": "Ludmila",
+      "nome_completo": "Ludmila Silva Neiva",
+      "iniciais": "L",
+      "posicao": 5,
+      "pontos": 0,
+      "faixa": null,
+      "pct_comissao": null,
+      "trava_receita": false,
+      "faixa_sem_trava": null,
+      "movimento": 0,
+      "ganho_semana": 0,
+      "proxima_faixa": {
+        "faixa": "Bronze",
+        "faltam": 1000,
+        "pct": 27
+      },
+      "detalhe": []
     }
   ],
-  "conquistas": [],
+  "conquistas": [
+    {
+      "codigo": "2",
+      "nome": "Maycon",
+      "faixa": "Bronze",
+      "desde": "2026-11-04",
+      "dias": 0
+    },
+    {
+      "codigo": "4",
+      "nome": "Thalles",
+      "faixa": "Bronze",
+      "desde": "2026-11-04",
+      "dias": 0
+    }
+  ],
   "resumo": {
-    "corretores": 4,
-    "em_faixa": 0,
-    "total_pontos": 1932,
+    "corretores": 5,
+    "em_faixa": 2,
+    "total_pontos": 3132,
     "tem_historico": true
   }
 }
