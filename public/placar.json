@@ -3,7 +3,7 @@
   "inicio": "2026-10-01",
   "fim": "2026-12-31",
   "dias_restantes": 51,
-  "atualizado_em": "2026-11-10T10:21:41",
+  "atualizado_em": "2026-11-10T16:14:32",
   "faixas": [
     {
       "nome": "Ouro",
@@ -134,26 +134,6 @@
           "pontos": 360
         }
       ]
-    },
-    {
-      "codigo": "46",
-      "nome": "Ludmila",
-      "nome_completo": "Ludmila Silva Neiva",
-      "iniciais": "L",
-      "posicao": 4,
-      "pontos": 0,
-      "faixa": null,
-      "pct_comissao": null,
-      "trava_receita": false,
-      "faixa_sem_trava": null,
-      "movimento": 0,
-      "ganho_semana": 0,
-      "proxima_faixa": {
-        "faixa": "Bronze",
-        "faltam": 1000,
-        "pct": 27
-      },
-      "detalhe": []
     }
   ],
   "conquistas": [
@@ -180,7 +160,7 @@
     }
   ],
   "resumo": {
-    "corretores": 4,
+    "corretores": 3,
     "em_faixa": 2,
     "total_pontos": 3972,
     "tem_historico": true
