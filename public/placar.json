@@ -2,8 +2,8 @@
   "ciclo": "2026-Q4",
   "inicio": "2026-10-01",
   "fim": "2026-12-31",
-  "dias_restantes": 51,
-  "atualizado_em": "2026-11-10T16:14:32",
+  "dias_restantes": 50,
+  "atualizado_em": "2026-11-11T00:11:24",
   "faixas": [
     {
       "nome": "Ouro",
@@ -63,7 +63,7 @@
       "trava_receita": false,
       "faixa_sem_trava": "Prata",
       "movimento": 1,
-      "ganho_semana": 1560,
+      "ganho_semana": 960,
       "proxima_faixa": {
         "faixa": "Ouro",
         "faltam": 828,
@@ -95,7 +95,7 @@
       "trava_receita": false,
       "faixa_sem_trava": "Bronze",
       "movimento": -1,
-      "ganho_semana": 600,
+      "ganho_semana": 0,
       "proxima_faixa": {
         "faixa": "Prata",
         "faltam": 560,
@@ -134,6 +134,26 @@
           "pontos": 360
         }
       ]
+    },
+    {
+      "codigo": "31",
+      "nome": "Thales",
+      "nome_completo": "Ulhoa Cabral de Sá",
+      "iniciais": "T",
+      "posicao": 4,
+      "pontos": 0,
+      "faixa": null,
+      "pct_comissao": null,
+      "trava_receita": false,
+      "faixa_sem_trava": null,
+      "movimento": 0,
+      "ganho_semana": 0,
+      "proxima_faixa": {
+        "faixa": "Bronze",
+        "faltam": 1000,
+        "pct": 27
+      },
+      "detalhe": []
     }
   ],
   "conquistas": [
@@ -142,25 +162,25 @@
       "nome": "Maycon",
       "faixa": "Prata",
       "desde": "2026-11-09",
-      "dias": 1
+      "dias": 2
     },
     {
       "codigo": "2",
       "nome": "Maycon",
       "faixa": "Bronze",
       "desde": "2026-11-04",
-      "dias": 6
+      "dias": 7
     },
     {
       "codigo": "4",
       "nome": "Thalles",
       "faixa": "Bronze",
       "desde": "2026-11-04",
-      "dias": 6
+      "dias": 7
     }
   ],
   "resumo": {
-    "corretores": 3,
+    "corretores": 4,
     "em_faixa": 2,
     "total_pontos": 3972,
     "tem_historico": true
