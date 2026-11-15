@@ -2,8 +2,8 @@
   "ciclo": "2026-Q4",
   "inicio": "2026-10-01",
   "fim": "2026-12-31",
-  "dias_restantes": 48,
-  "atualizado_em": "2026-11-13T23:42:02",
+  "dias_restantes": 46,
+  "atualizado_em": "2026-11-15T02:24:08",
   "faixas": [
     {
       "nome": "Ouro",
@@ -52,17 +52,43 @@
   ],
   "corretores": [
     {
+      "codigo": "4",
+      "nome": "Thalles",
+      "nome_completo": "Felicissimo Thalles de Melho Sousa",
+      "iniciais": "T",
+      "posicao": 1,
+      "pontos": 2400,
+      "faixa": "Prata",
+      "pct_comissao": 32,
+      "trava_receita": false,
+      "faixa_sem_trava": "Prata",
+      "movimento": 1,
+      "ganho_semana": 960,
+      "proxima_faixa": {
+        "faixa": "Ouro",
+        "faltam": 600,
+        "pct": 38
+      },
+      "detalhe": [
+        {
+          "criterio": "Cadastro no CRM",
+          "qtd": 20,
+          "pontos": 2400
+        }
+      ]
+    },
+    {
       "codigo": "2",
       "nome": "Maycon",
       "nome_completo": "Maycon Alves Barbosa",
       "iniciais": "M",
-      "posicao": 1,
+      "posicao": 2,
       "pontos": 2172,
       "faixa": "Prata",
       "pct_comissao": 32,
       "trava_receita": false,
       "faixa_sem_trava": "Prata",
-      "movimento": 0,
+      "movimento": -1,
       "ganho_semana": 240,
       "proxima_faixa": {
         "faixa": "Ouro",
@@ -80,32 +106,6 @@
           "criterio": "Cadastro no CRM",
           "qtd": 17,
           "pontos": 2040
-        }
-      ]
-    },
-    {
-      "codigo": "4",
-      "nome": "Thalles",
-      "nome_completo": "Felicissimo Thalles de Melho Sousa",
-      "iniciais": "T",
-      "posicao": 2,
-      "pontos": 1800,
-      "faixa": "Bronze",
-      "pct_comissao": 27,
-      "trava_receita": false,
-      "faixa_sem_trava": "Bronze",
-      "movimento": 0,
-      "ganho_semana": 360,
-      "proxima_faixa": {
-        "faixa": "Prata",
-        "faltam": 200,
-        "pct": 32
-      },
-      "detalhe": [
-        {
-          "criterio": "Cadastro no CRM",
-          "qtd": 15,
-          "pontos": 1800
         }
       ]
     },
@@ -158,31 +158,38 @@
   ],
   "conquistas": [
     {
+      "codigo": "4",
+      "nome": "Thalles",
+      "faixa": "Prata",
+      "desde": "2026-11-13",
+      "dias": 2
+    },
+    {
       "codigo": "2",
       "nome": "Maycon",
       "faixa": "Prata",
       "desde": "2026-11-09",
-      "dias": 4
+      "dias": 6
     },
     {
       "codigo": "2",
       "nome": "Maycon",
       "faixa": "Bronze",
       "desde": "2026-11-04",
-      "dias": 9
+      "dias": 11
     },
     {
       "codigo": "4",
       "nome": "Thalles",
       "faixa": "Bronze",
       "desde": "2026-11-04",
-      "dias": 9
+      "dias": 11
     }
   ],
   "resumo": {
     "corretores": 4,
     "em_faixa": 2,
-    "total_pontos": 4332,
+    "total_pontos": 4932,
     "tem_historico": true
   }
 }
