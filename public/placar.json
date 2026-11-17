@@ -3,7 +3,7 @@
   "inicio": "2026-10-01",
   "fim": "2026-12-31",
   "dias_restantes": 44,
-  "atualizado_em": "2026-11-17T01:10:32",
+  "atualizado_em": "2026-11-17T09:56:47",
   "faixas": [
     {
       "nome": "Ouro",
@@ -52,49 +52,19 @@
   ],
   "corretores": [
     {
-      "codigo": "4",
-      "nome": "Thalles",
-      "nome_completo": "Felicissimo Thalles de Melho Sousa",
-      "iniciais": "T",
-      "posicao": 1,
-      "pontos": 2400,
-      "faixa": "Prata",
-      "pct_comissao": 32,
-      "trava_receita": false,
-      "faixa_sem_trava": "Prata",
-      "movimento": 1,
-      "ganho_semana": 960,
-      "proxima_faixa": {
-        "faixa": "Ouro",
-        "faltam": 600,
-        "pct": 38
-      },
-      "detalhe": [
-        {
-          "criterio": "Cadastro no CRM",
-          "qtd": 20,
-          "pontos": 2400
-        }
-      ]
-    },
-    {
       "codigo": "2",
       "nome": "Maycon",
       "nome_completo": "Maycon Alves Barbosa",
       "iniciais": "M",
-      "posicao": 2,
-      "pontos": 2172,
-      "faixa": "Prata",
-      "pct_comissao": 32,
+      "posicao": 1,
+      "pontos": 3012,
+      "faixa": "Ouro",
+      "pct_comissao": 38,
       "trava_receita": false,
-      "faixa_sem_trava": "Prata",
-      "movimento": -1,
-      "ganho_semana": 0,
-      "proxima_faixa": {
-        "faixa": "Ouro",
-        "faltam": 828,
-        "pct": 38
-      },
+      "faixa_sem_trava": "Ouro",
+      "movimento": 0,
+      "ganho_semana": 840,
+      "proxima_faixa": null,
       "detalhe": [
         {
           "criterio": "Receita gerada",
@@ -104,8 +74,34 @@
         },
         {
           "criterio": "Cadastro no CRM",
-          "qtd": 17,
-          "pontos": 2040
+          "qtd": 24,
+          "pontos": 2880
+        }
+      ]
+    },
+    {
+      "codigo": "4",
+      "nome": "Thalles",
+      "nome_completo": "Felicissimo Thalles de Melho Sousa",
+      "iniciais": "T",
+      "posicao": 2,
+      "pontos": 2520,
+      "faixa": "Prata",
+      "pct_comissao": 32,
+      "trava_receita": false,
+      "faixa_sem_trava": "Prata",
+      "movimento": 0,
+      "ganho_semana": 1080,
+      "proxima_faixa": {
+        "faixa": "Ouro",
+        "faltam": 480,
+        "pct": 38
+      },
+      "detalhe": [
+        {
+          "criterio": "Cadastro no CRM",
+          "qtd": 21,
+          "pontos": 2520
         }
       ]
     },
@@ -158,6 +154,13 @@
   ],
   "conquistas": [
     {
+      "codigo": "2",
+      "nome": "Maycon",
+      "faixa": "Ouro",
+      "desde": "2026-11-16",
+      "dias": 1
+    },
+    {
       "codigo": "4",
       "nome": "Thalles",
       "faixa": "Prata",
@@ -189,7 +192,7 @@
   "resumo": {
     "corretores": 4,
     "em_faixa": 2,
-    "total_pontos": 4932,
+    "total_pontos": 5892,
     "tem_historico": true
   }
 }
