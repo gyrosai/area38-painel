@@ -2,8 +2,8 @@
   "ciclo": "2026-Q4",
   "inicio": "2026-10-01",
   "fim": "2026-12-31",
-  "dias_restantes": 43,
-  "atualizado_em": "2026-11-18T23:00:18",
+  "dias_restantes": 42,
+  "atualizado_em": "2026-11-19T23:06:41",
   "faixas": [
     {
       "nome": "Ouro",
@@ -57,13 +57,13 @@
       "nome_completo": "Maycon Alves Barbosa",
       "iniciais": "M",
       "posicao": 1,
-      "pontos": 3012,
+      "pontos": 3132,
       "faixa": "Ouro",
       "pct_comissao": 38,
       "trava_receita": false,
       "faixa_sem_trava": "Ouro",
       "movimento": 0,
-      "ganho_semana": 840,
+      "ganho_semana": 960,
       "proxima_faixa": null,
       "detalhe": [
         {
@@ -74,8 +74,8 @@
         },
         {
           "criterio": "Cadastro no CRM",
-          "qtd": 24,
-          "pontos": 2880
+          "qtd": 25,
+          "pontos": 3000
         }
       ]
     },
@@ -158,41 +158,41 @@
       "nome": "Maycon",
       "faixa": "Ouro",
       "desde": "2026-11-16",
-      "dias": 2
+      "dias": 3
     },
     {
       "codigo": "4",
       "nome": "Thalles",
       "faixa": "Prata",
       "desde": "2026-11-13",
-      "dias": 5
+      "dias": 6
     },
     {
       "codigo": "2",
       "nome": "Maycon",
       "faixa": "Prata",
       "desde": "2026-11-09",
-      "dias": 9
+      "dias": 10
     },
     {
       "codigo": "2",
       "nome": "Maycon",
       "faixa": "Bronze",
       "desde": "2026-11-04",
-      "dias": 14
+      "dias": 15
     },
     {
       "codigo": "4",
       "nome": "Thalles",
       "faixa": "Bronze",
       "desde": "2026-11-04",
-      "dias": 14
+      "dias": 15
     }
   ],
   "resumo": {
     "corretores": 4,
     "em_faixa": 2,
-    "total_pontos": 6252,
+    "total_pontos": 6372,
     "tem_historico": true
   }
 }
