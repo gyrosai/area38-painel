@@ -2,8 +2,8 @@
   "ciclo": "2026-Q4",
   "inicio": "2026-10-01",
   "fim": "2026-12-31",
-  "dias_restantes": 42,
-  "atualizado_em": "2026-11-19T23:06:41",
+  "dias_restantes": 38,
+  "atualizado_em": "2026-11-23T10:59:42",
   "faixas": [
     {
       "nome": "Ouro",
@@ -63,7 +63,7 @@
       "trava_receita": false,
       "faixa_sem_trava": "Ouro",
       "movimento": 0,
-      "ganho_semana": 960,
+      "ganho_semana": 120,
       "proxima_faixa": null,
       "detalhe": [
         {
@@ -91,7 +91,7 @@
       "trava_receita": false,
       "faixa_sem_trava": "Prata",
       "movimento": 0,
-      "ganho_semana": 1080,
+      "ganho_semana": 480,
       "proxima_faixa": {
         "faixa": "Ouro",
         "faltam": 120,
@@ -158,35 +158,35 @@
       "nome": "Maycon",
       "faixa": "Ouro",
       "desde": "2026-11-16",
-      "dias": 3
+      "dias": 7
     },
     {
       "codigo": "4",
       "nome": "Thalles",
       "faixa": "Prata",
       "desde": "2026-11-13",
-      "dias": 6
+      "dias": 10
     },
     {
       "codigo": "2",
       "nome": "Maycon",
       "faixa": "Prata",
       "desde": "2026-11-09",
-      "dias": 10
+      "dias": 14
     },
     {
       "codigo": "2",
       "nome": "Maycon",
       "faixa": "Bronze",
       "desde": "2026-11-04",
-      "dias": 15
+      "dias": 19
     },
     {
       "codigo": "4",
       "nome": "Thalles",
       "faixa": "Bronze",
       "desde": "2026-11-04",
-      "dias": 15
+      "dias": 19
     }
   ],
   "resumo": {
