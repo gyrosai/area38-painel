@@ -2,8 +2,8 @@
   "ciclo": "2026-Q4",
   "inicio": "2026-10-01",
   "fim": "2026-12-31",
-  "dias_restantes": 36,
-  "atualizado_em": "2026-11-25T11:34:31",
+  "dias_restantes": 35,
+  "atualizado_em": "2026-11-26T10:04:17",
   "faixas": [
     {
       "nome": "Ouro",
@@ -23,31 +23,35 @@
   ],
   "criterios": [
     {
-      "tipo_ato": "cadastro_lead",
-      "rotulo": "Cadastro no CRM",
+      "tipo_ato": "video_semanal",
+      "rotulo": "Vídeo semanal",
       "pts_por_ato": 120,
-      "pts_por_valor": null
+      "pts_por_valor": null,
+      "vigente_desde": "2026-11-17"
     },
     {
       "tipo_ato": "captacao_exclusiva",
       "rotulo": "Captacao com exclusividade",
       "pts_por_ato": 80,
-      "pts_por_valor": null
+      "pts_por_valor": null,
+      "vigente_desde": "2026-11-17"
     },
     {
-      "tipo_ato": "reuniao_presencial",
-      "rotulo": "Reuniao presencial com o cliente",
-      "pts_por_ato": 80,
-      "pts_por_valor": null
+      "tipo_ato": "cadastro_lead",
+      "rotulo": "Cadastro no CRM",
+      "pts_por_ato": 60,
+      "pts_por_valor": null,
+      "vigente_desde": "2026-11-17"
     },
     {
       "tipo_ato": "receita",
       "rotulo": "Receita gerada",
       "pts_por_ato": 0,
       "pts_por_valor": {
-        "reais": 100,
+        "reais": 20,
         "pontos": 1
-      }
+      },
+      "vigente_desde": "2026-11-17"
     }
   ],
   "corretores": [
@@ -57,25 +61,28 @@
       "nome_completo": "Maycon Alves Barbosa",
       "iniciais": "M",
       "posicao": 1,
-      "pontos": 3372,
+      "pontos": 3720,
       "faixa": "Ouro",
       "pct_comissao": 38,
       "trava_receita": false,
       "faixa_sem_trava": "Ouro",
       "movimento": 0,
-      "ganho_semana": 360,
+      "ganho_semana": 120,
       "proxima_faixa": null,
       "detalhe": [
         {
           "criterio": "Receita gerada",
           "qtd": 1,
-          "pontos": 132,
-          "reais": 13200.0
+          "pontos": 660,
+          "reais": 13200.0,
+          "excecoes": [
+            "exceção: Decisao da diretoria em 26/11/2026: receita de 01/10 (negocio 598, Maycon) pontua pela regua nova (R$ 20 = 1 pt)."
+          ]
         },
         {
           "criterio": "Cadastro no CRM",
           "qtd": 27,
-          "pontos": 3240
+          "pontos": 3060
         }
       ]
     },
@@ -85,7 +92,7 @@
       "nome_completo": "Felicissimo Thalles de Melho Sousa",
       "iniciais": "T",
       "posicao": 2,
-      "pontos": 2880,
+      "pontos": 2640,
       "faixa": "Prata",
       "pct_comissao": 32,
       "trava_receita": false,
@@ -94,14 +101,14 @@
       "ganho_semana": 0,
       "proxima_faixa": {
         "faixa": "Ouro",
-        "faltam": 120,
+        "faltam": 360,
         "pct": 38
       },
       "detalhe": [
         {
           "criterio": "Cadastro no CRM",
           "qtd": 24,
-          "pontos": 2880
+          "pontos": 2640
         }
       ]
     },
@@ -158,27 +165,20 @@
       "nome": "Maycon",
       "faixa": "Ouro",
       "desde": "2026-11-16",
-      "dias": 9
+      "dias": 10
     },
     {
       "codigo": "4",
       "nome": "Thalles",
       "faixa": "Prata",
       "desde": "2026-11-13",
-      "dias": 12
+      "dias": 13
     },
     {
       "codigo": "2",
       "nome": "Maycon",
       "faixa": "Prata",
-      "desde": "2026-11-09",
-      "dias": 16
-    },
-    {
-      "codigo": "2",
-      "nome": "Maycon",
-      "faixa": "Bronze",
-      "desde": "2026-11-04",
+      "desde": "2026-11-05",
       "dias": 21
     },
     {
@@ -186,13 +186,20 @@
       "nome": "Thalles",
       "faixa": "Bronze",
       "desde": "2026-11-04",
-      "dias": 21
+      "dias": 22
+    },
+    {
+      "codigo": "2",
+      "nome": "Maycon",
+      "faixa": "Bronze",
+      "desde": "2026-10-26",
+      "dias": 31
     }
   ],
   "resumo": {
     "corretores": 4,
     "em_faixa": 2,
-    "total_pontos": 6612,
+    "total_pontos": 6720,
     "tem_historico": true
   }
 }
